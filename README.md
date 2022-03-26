@@ -1,1 +1,3 @@
 WPFApp
+
+Hello World
