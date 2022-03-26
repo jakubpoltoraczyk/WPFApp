@@ -17,7 +17,7 @@ using System.Diagnostics;
 namespace WPFApp.Views
 {
     /// <summary>
-    /// Class, which represents login view
+    /// Class which represents login view
     /// </summary>
     public partial class LoginView : UserControl
     {
@@ -37,7 +37,7 @@ namespace WPFApp.Views
             int answer = RequestLogin(UsernameContentBox.Text, PasswordContentBox.Password.ToString());
             if (answer == 200)
             {
-                MainWindow.Instance.SetApplicationAccess(true);
+                MainWindow.Instance.RefreshControlPanel(true);
                 MessageBox.Show("Successful login attempt", String.Empty, MessageBoxButton.OK, MessageBoxImage.Information);
             } else
             {

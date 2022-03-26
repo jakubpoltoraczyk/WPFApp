@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace WPFApp.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy DeliveryView.xaml
+    /// Class which represents delivery view
     /// </summary>
     public partial class DeliveryView : UserControl
     {
@@ -31,7 +31,7 @@ namespace WPFApp.Views
         }
 
         /// <summary>
-        /// Called when delivery view has been loaded
+        /// Called when delivery view has been just loaded
         /// </summary>
         void ViewLoaded(Object sender, RoutedEventArgs e)
         {

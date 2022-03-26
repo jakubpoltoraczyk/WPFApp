@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 namespace WPFApp
 {
     /// <summary>
-    /// Class which represents main window and allows to manage control panel and its tab items
+    /// Class which represents main window and allows to manage control panel or its tab items
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -28,7 +28,7 @@ namespace WPFApp
         public static MainWindow Instance { get; private set; }
 
         /// <summary>
-        /// Static constructor, which creates new instance of main window class
+        /// Static constructor, which allows to create instance of main window class
         /// </summary>
         static MainWindow()
         {
@@ -41,30 +41,20 @@ namespace WPFApp
         private MainWindow()
         {
             InitializeComponent();
-            SetApplicationAccess(false);
+            RefreshControlPanel(false);
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
         /// <summary>
-        /// Set access to appropriate application views
+        /// Refresh control panel status
         /// </summary>
-        public void SetApplicationAccess(bool hasAccess)
+        public void RefreshControlPanel(bool isSignedIn)
         {
-            if (hasAccess)
-            {
-                LoginViewTab.IsEnabled = false;
-                TaskViewTab.IsEnabled = true;
-                DeliveryViewTab.IsEnabled = true;
-                StatisticsViewTab.IsEnabled = true;
-                ControlPanel.SelectedIndex = 1;
-            } else
-            {
-                LoginViewTab.IsEnabled = true;
-                TaskViewTab.IsEnabled = false;
-                DeliveryViewTab.IsEnabled = false;
-                StatisticsViewTab.IsEnabled = false;
-                ControlPanel.SelectedIndex = 0;
-            }
+            LoginViewTab.IsEnabled = !isSignedIn;
+            TaskViewTab.IsEnabled = isSignedIn;
+            DeliveryViewTab.IsEnabled = isSignedIn;
+            StatisticsViewTab.IsEnabled = isSignedIn;
+            ControlPanel.SelectedIndex = isSignedIn ? 1 : 0;
         }
     }
 }

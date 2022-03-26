@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace WPFApp.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy TaskView.xaml
+    /// Class which represents task view
     /// </summary>
     public partial class TaskView : UserControl
     {
@@ -27,13 +27,12 @@ namespace WPFApp.Views
         public TaskView()
         {
             InitializeComponent();
-            Loaded += ViewLoaded;
         }
 
         /// <summary>
-        /// Called when view has been loaded
+        /// Called when view has been just loaded
         /// </summary>
-        void ViewLoaded(Object sender, RoutedEventArgs e)
+        private void ViewLoaded(Object sender, RoutedEventArgs e)
         {
             Trace.WriteLine("Task view has been loaded!");
         }
