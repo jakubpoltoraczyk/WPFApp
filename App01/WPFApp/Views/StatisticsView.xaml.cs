@@ -37,7 +37,7 @@ namespace WPFApp.Views
         /// <param name="e"></param>
         private void ViewLoaed(object sender, RoutedEventArgs e)
         {
-            Trace.WriteLine("Task view has been loaded!");
+            Trace.WriteLine("Statistics view has been loaded!");
         }
     }
 }
