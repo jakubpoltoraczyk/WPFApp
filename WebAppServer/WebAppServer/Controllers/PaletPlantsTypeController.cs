@@ -9,7 +9,7 @@ namespace WebAppServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserCategoriesController : ControllerBase
+    public class PaletPlantsTypeController : ControllerBase
     {
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
