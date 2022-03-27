@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using WebAppServer.Models;
 
 namespace WebAppServer.Contexts
@@ -11,8 +7,10 @@ namespace WebAppServer.Contexts
     public class OracleDbContext : DbContext
     {
         public OracleDbContext(DbContextOptions<OracleDbContext> options) : base(options) { }
+        public OracleDbContext() : base() { }
 
-        public DbSet<UserCategory> UserCategories { get; set; }
+        public virtual DbSet<UserCategory> UserCategory { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
