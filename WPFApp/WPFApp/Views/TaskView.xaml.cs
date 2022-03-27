@@ -39,7 +39,7 @@ namespace WPFApp.Views
         {
             myString = string.Empty;
             List<TextBlock> indexList = new List<TextBlock>();
-            List<TextBlock> deadlineList = new List<TextBlock>();
+            List<DatePicker> deadlineList = new List<DatePicker>();
             List<TextBlock> descriptionList = new List<TextBlock>();
             List<Button> confirmationList = new List<Button>();
 
@@ -61,24 +61,19 @@ namespace WPFApp.Views
         {
             return new TextBlock()
             {
-                Width = 50,
-                Height = 50,
                 Text = index.ToString(),
-                FontSize = 16,
-                TextAlignment = TextAlignment.Center
+                FontSize = 18,
+                TextAlignment = TextAlignment.Center,
+                Margin = new Thickness(0, 10, 0, 10)
             };
         }
 
-        private TextBlock createDeadlineTextBlock()
+        private DatePicker createDeadlineTextBlock()
         {
-            DateTime dateTime = DateTime.Today;
-            String contentText = "Deadline: " + dateTime.ToShortDateString();
-            return new TextBlock() { 
-                Width = 150, 
-                Height = 50, 
-                Text = contentText, 
-                FontSize = 16, 
-                TextAlignment = TextAlignment.Center
+            return new DatePicker() { 
+                SelectedDate = DateTime.Today,
+                Margin = new Thickness(0, 10, 0, 10),
+                Focusable = false
             };
         }
 
@@ -87,21 +82,19 @@ namespace WPFApp.Views
             myString += "ttt";
             return new TextBlock()
             {
-                Height = 50,
-                MaxWidth = 420,
                 Text = myString,
-                FontSize = 16,
-                TextAlignment = TextAlignment.Center
+                FontSize = 18,
+                TextAlignment = TextAlignment.Center,
+                Margin = new Thickness(0, 10, 0, 10)
             };
         }
 
         private Button createConfirmationButton(int index)
         {
             Button button = new Button() {
-                Height = 20, 
-                Width = 20, 
-                Margin = new Thickness(0, 2, 0, 28),
-                Content = index.ToString() 
+                Content = "To-do",
+                Margin = new Thickness(0, 12, 0, 12),
+                Background = Brushes.Red
             };
             button.Click += OnConfirmationButtonClick;
             return button;
