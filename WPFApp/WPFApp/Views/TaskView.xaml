@@ -31,7 +31,7 @@
                     <ItemsControl x:Name="DescriptionList" Width="400" Margin="20, 10, 20, 10" >
                     </ItemsControl>
 
-                    <ItemsControl x:Name="ConfirmationList" Width="60" Margin="10, 10, 10, 10">
+                    <ItemsControl x:Name="StatusList" Width="60" Margin="10, 10, 10, 10">
                     </ItemsControl>
                 </StackPanel>
             </Grid>

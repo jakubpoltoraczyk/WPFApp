@@ -21,8 +21,6 @@ namespace WPFApp.Views
     /// </summary>
     public partial class TaskView : UserControl
     {
-        private string myString;
-
         /// <summary>
         /// Create new instance of task view
         /// </summary>
@@ -37,74 +35,99 @@ namespace WPFApp.Views
         /// </summary>
         private void ViewLoaded(Object sender, RoutedEventArgs e)
         {
-            myString = string.Empty;
-            List<TextBlock> indexList = new List<TextBlock>();
-            List<DatePicker> deadlineList = new List<DatePicker>();
-            List<TextBlock> descriptionList = new List<TextBlock>();
-            List<Button> confirmationList = new List<Button>();
+            var indexList = new List<TextBlock>();
+            var deadlineList = new List<DatePicker>();
+            var descriptionList = new List<TextBlock>();
+            var statusList = new List<Button>();
 
             for(int i = 0; i < 50; ++i)
             {
-                indexList.Add(createIndexTextBlock(i));
-                deadlineList.Add(createDeadlineTextBlock());
-                descriptionList.Add(createDescriptionTextBlock());
-                confirmationList.Add(createConfirmationButton(i));
+                indexList.Add(CreateIndexTextBlock());
+                deadlineList.Add(CreateDeadlineTextBlock());
+                descriptionList.Add(CreateDescriptionTextBlock());
+                statusList.Add(CreateStatusButton());
             }
 
             IndexList.ItemsSource = indexList;
             DeadlineList.ItemsSource = deadlineList;
             DescriptionList.ItemsSource = descriptionList;
-            ConfirmationList.ItemsSource = confirmationList;
+            StatusList.ItemsSource = statusList;
         }
 
-        private TextBlock createIndexTextBlock(int index)
+        /// <summary>
+        /// Create text block component related to index field
+        /// </summary>
+        private TextBlock CreateIndexTextBlock()
         {
-            return new TextBlock()
+            return new()
             {
-                Text = index.ToString(),
-                FontSize = 18,
+                Text = "0",
                 TextAlignment = TextAlignment.Center,
-                Margin = new Thickness(0, 10, 0, 10)
+                FontSize = 18,
+                Margin = new (0, 10, 0, 10)
             };
         }
 
-        private DatePicker createDeadlineTextBlock()
+        /// <summary>
+        /// Create date picker component related to deadline field
+        /// </summary>
+        private DatePicker CreateDeadlineTextBlock()
         {
-            return new DatePicker() { 
+            return new() {
+                Focusable = false,
                 SelectedDate = DateTime.Today,
-                Margin = new Thickness(0, 10, 0, 10),
-                Focusable = false
+                Margin = new (0, 10, 0, 10)
             };
         }
 
-        private TextBlock createDescriptionTextBlock()
+        /// <summary>
+        /// Create text block component related to description field
+        /// </summary>
+        private TextBlock CreateDescriptionTextBlock()
         {
-            myString += "ttt";
-            return new TextBlock()
+            return new()
             {
-                Text = myString,
-                FontSize = 18,
+                Text = "Some completely random text",
                 TextAlignment = TextAlignment.Center,
-                Margin = new Thickness(0, 10, 0, 10)
+                FontSize = 18,
+                Margin = new (0, 10, 0, 10)
             };
         }
 
-        private Button createConfirmationButton(int index)
+        /// <summary>
+        /// Create button component related to current task status
+        /// </summary>
+        private Button CreateStatusButton()
         {
-            Button button = new Button() {
-                Content = "To-do",
-                Margin = new Thickness(0, 12, 0, 12),
-                Background = Brushes.Red
+            Button button = new() {
+                Content = "To do",
+                Background = Brushes.IndianRed,
+                Margin = new (0, 12, 0, 12)
             };
-            button.Click += OnConfirmationButtonClick;
+            button.Click += OnStatusButtonClick;
             return button;
         }
 
-        private void OnConfirmationButtonClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Called when status button has been clicked
+        /// </summary>
+        private void OnStatusButtonClick(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            // some POST to delete button with given index
-            ViewLoaded(this, e);
+            button.Content = "Done";
+            button.Background = Brushes.LightGreen;
+
+            var result = MessageBox.Show("Do you want to close this task?", String.Empty, 
+                                         MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                // todo: call here some POST related to deleting specified task
+                ViewLoaded(this, e);
+            } else
+            {
+                button.Content = "To do";
+                button.Background = Brushes.IndianRed;
+            }
         }
     }
 }
