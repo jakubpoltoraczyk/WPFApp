@@ -38,7 +38,7 @@ namespace Tests_WebAppServer
             mockContext.Setup(c => c.Users).Returns(mockSet.Object);
 
             UsersController service = new UsersController(mockContext.Object);
-            var result = service.GetUsers();
+            var result = service.Get();
 
 
             Assert.AreEqual(3, result.Count);

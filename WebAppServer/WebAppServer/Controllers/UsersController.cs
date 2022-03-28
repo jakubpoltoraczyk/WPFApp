@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.Entity;
 using System.Threading.Tasks;
 using WebAppServer.Contexts;
 using WebAppServer.Models;
@@ -15,49 +14,44 @@ namespace WebAppServer.Controllers
     public class UsersController : ControllerBase
     {
         private readonly OracleDbContext _dataContext;
-
         public UsersController(OracleDbContext dbContext)
         {
             _dataContext = dbContext;
         }
 
-
         [HttpGet]
-        public IEnumerable<WeatherForecast> GetRandom()
+        public List<Users> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-            })
-            .ToArray();
-        }
+            /*
+            ObjectSet<Contact> contacts = context.Contacts;
+            ObjectSet<SalesOrderHeader> orders = context.SalesOrderHeaders;
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsersAsync()
-        {
-            return await _dataContext.Users.ToListAsync();
-        }
-
-        [HttpGet]
-        public List<Users> GetUsers()
-        {
+            var query =
+                contacts.Join(
+                    orders,
+                    order => order.ContactID,
+                    contact => contact.Contact.ContactID,
+                    (contact, order) => new
+                    {
+                        ContactID = contact.ContactID,
+                        SalesOrderID = order.SalesOrderID,
+                        FirstName = contact.FirstName,
+                        Lastname = contact.LastName,
+                        TotalDue = order.TotalDue
+                    });
             return _dataContext.Users.ToList();
-        }
+            */
+            
+            return _dataContext.Users.ToList();
 
-        // GET: api/Inspections/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Users>> GetUsersAsync(int id)
-        {
-            var inspection = await _dataContext.Users.FindAsync(id);
-
-            if (inspection == null)
+            List<Users> tmp = new List<Users>()
             {
-                return NotFound();
-            }
-
-            return inspection;
+                new Users(){Name = "Kuba", UserId = 1},
+                new Users(){Name = "Jan", UserId = 2},
+                new Users(){Name = "Peter", UserId = 3},
+                new Users(){Name = "Wiki", UserId = 4},
+            };
+            return tmp;
         }
 
     }

@@ -1,0 +1,16 @@
+﻿
+
+
+
+
+
+> Package Manager Console
+
+
+
+Add-Migration first
+
+update-database
+
+
+

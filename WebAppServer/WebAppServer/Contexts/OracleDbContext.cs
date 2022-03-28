@@ -11,6 +11,7 @@ namespace WebAppServer.Contexts
 
         public virtual DbSet<UserCategory> UserCategory { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Company> Company { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

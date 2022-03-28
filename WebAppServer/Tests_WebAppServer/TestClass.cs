@@ -1,9 +1,9 @@
 using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tests_WebAppServer
 {
@@ -102,7 +102,8 @@ namespace Tests_WebAppServer
             var blog = _context.Blogs.Add(new Blog { Name = name, Url = url });
             _context.SaveChanges();
 
-            return blog;
+            return null;
+            //return blog;
         }
 
         public List<Blog> GetAllBlogs()
