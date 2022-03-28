@@ -13,22 +13,22 @@ namespace WebAppServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TypeOfCareController : ControllerBase
+    public class PaletController : ControllerBase
     {
         private readonly OracleDbContext _dataContext;
-        public TypeOfCareController(OracleDbContext dbContext)
+        public PaletController(OracleDbContext dbContext)
         {
             _dataContext = dbContext;
         }
 
         [HttpGet]
-        public List<TypeOfCare> Get()
+        public List<Palet> Get()
         {
             if (ApplicationVersion.IsTestVersion())
             {
-                return new MoqTypeOfCareList().GetMoqList();
+                return new MoqPaletList().GetMoqList();
             }
-            return _dataContext.TypeOfCare.ToList();
+            return _dataContext.Palet.ToList();
         }
     }
 }

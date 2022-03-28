@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAppServer.Contexts;
 using WebAppServer.Models;
+using WebAppServer.MoqModels;
+using WebAppServer.SingletonsFlags;
 
 namespace WebAppServer.Controllers
 {
@@ -22,37 +24,11 @@ namespace WebAppServer.Controllers
         [HttpGet]
         public List<Users> Get()
         {
-            /*
-            ObjectSet<Contact> contacts = context.Contacts;
-            ObjectSet<SalesOrderHeader> orders = context.SalesOrderHeaders;
-
-            var query =
-                contacts.Join(
-                    orders,
-                    order => order.ContactID,
-                    contact => contact.Contact.ContactID,
-                    (contact, order) => new
-                    {
-                        ContactID = contact.ContactID,
-                        SalesOrderID = order.SalesOrderID,
-                        FirstName = contact.FirstName,
-                        Lastname = contact.LastName,
-                        TotalDue = order.TotalDue
-                    });
-            return _dataContext.Users.ToList();
-            */
-            
-            return _dataContext.Users.ToList();
-
-            List<Users> tmp = new List<Users>()
+            if (ApplicationVersion.IsTestVersion())
             {
-                new Users(){Name = "Kuba", UserId = 1},
-                new Users(){Name = "Jan", UserId = 2},
-                new Users(){Name = "Peter", UserId = 3},
-                new Users(){Name = "Wiki", UserId = 4},
-            };
-            return tmp;
+                return new MoqUsersList().GetMoqList();
+            }
+            return _dataContext.Users.ToList();
         }
-
     }
 }

@@ -10,8 +10,12 @@ namespace WebAppServer.Contexts
         public OracleDbContext() : base() { }
 
         public virtual DbSet<UserCategory> UserCategory { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Palet> Palet { get; set; }
         public virtual DbSet<Company> Company { get; set; }
+        public virtual DbSet<TypeOfCare> TypeOfCare { get; set; }
+        public virtual DbSet<PaletPlantsType> PaletPlantsType { get; set; }
+        public virtual DbSet<CareSchedule> CareSchedule { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

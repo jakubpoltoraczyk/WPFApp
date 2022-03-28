@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAppServer.Contexts;
 using WebAppServer.Models;
+using WebAppServer.MoqModels;
+using WebAppServer.SingletonsFlags;
 
 namespace WebAppServer.Controllers
 {
@@ -22,9 +24,13 @@ namespace WebAppServer.Controllers
         [HttpGet]
         public List<Company> Get()
         {
-            var tmp = _dataContext.Company.ToList();
+            if (ApplicationVersion.IsTestVersion())
+            {
+                return new MoqCompanyList().GetMoqList();
+            }
             return _dataContext.Company.ToList();
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Company>> GetCompany(int id)
         {

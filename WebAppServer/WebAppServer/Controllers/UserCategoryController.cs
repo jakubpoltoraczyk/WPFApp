@@ -4,6 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAppServer.Contexts;
+using WebAppServer.Models;
+using WebAppServer.MoqModels;
+using WebAppServer.SingletonsFlags;
 
 namespace WebAppServer.Controllers
 {
@@ -11,17 +15,20 @@ namespace WebAppServer.Controllers
     [ApiController]
     public class UserCategoryController : ControllerBase
     {
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        private readonly OracleDbContext _dataContext;
+        public UserCategoryController(OracleDbContext dbContext)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-            })
-            .ToArray();
+            _dataContext = dbContext;
         }
 
+        [HttpGet]
+        public List<UserCategory> Get()
+        {
+            if (ApplicationVersion.IsTestVersion())
+            {
+                return new MoqUserCategoryList().GetMoqList();
+            }
+            return _dataContext.UserCategory.ToList();
+        }
     }
 }
