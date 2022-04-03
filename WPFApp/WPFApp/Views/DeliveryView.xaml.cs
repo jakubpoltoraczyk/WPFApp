@@ -35,7 +35,13 @@ namespace WPFApp.Views
         /// </summary>
         void ViewLoaded(Object sender, RoutedEventArgs e)
         {
-            Trace.WriteLine("Delivery view has been loaded!");
+            var dataClient = DataClient.Instance;
+
+            var response = dataClient.GET("PaletPlantsType");
+
+            
+
+            Trace.WriteLine(response);
         }
     }
 }
