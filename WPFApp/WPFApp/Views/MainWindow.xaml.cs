@@ -14,14 +14,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFApp.Views;
 
 namespace WPFApp
 {
     /// <summary>
-    /// Class which represents main window and allows to manage control panel or its tab items
+    /// Singleton class which represents main window and allows to manage control panel or its tab items
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Contains information if manager is logged in as current user
+        /// </summary>
+        public bool isManager { get; set; }
+
         /// <summary>
         /// Instance of main window class
         /// </summary>
@@ -52,10 +58,14 @@ namespace WPFApp
         {
             LoginViewTab.IsEnabled = !isSignedIn;
             TaskViewTab.IsEnabled = isSignedIn;
-            DeliveryViewTab.IsEnabled = isSignedIn;
+            EmployeeDeliveryViewTab.IsEnabled = isSignedIn;
+            ManagerDeliveryViewTab.IsEnabled = isSignedIn;
             StatisticsViewTab.IsEnabled = isSignedIn;
             LogoutViewTab.IsEnabled = isSignedIn;
             ControlPanel.SelectedIndex = isSignedIn ? 1 : 0;
+
+            EmployeeDeliveryViewTab.Visibility = isManager ? Visibility.Collapsed : Visibility.Visible;
+            ManagerDeliveryViewTab.Visibility = isManager ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

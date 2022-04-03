@@ -14,15 +14,19 @@
                 <uc:LoginView />
             </TabItem>
 
-            <TabItem x:Name="TaskViewTab" Header="Tasks" Height="40" Width="207" IsEnabled="False">
+            <TabItem x:Name="TaskViewTab" Header="Tasks" Height="40" Width="206" IsEnabled="False">
                 <uc:TaskView />
             </TabItem>
 
-            <TabItem x:Name="DeliveryViewTab" Header="Delivery" Height="40" Width="207" IsEnabled="False">
-                <uc:DeliveryView />
+            <TabItem x:Name="EmployeeDeliveryViewTab" Header="Delivery" Height="40" Width="206" IsEnabled="False" Visibility="Visible">
+                <uc:EmployeeDeliveryView />
             </TabItem>
 
-            <TabItem x:Name="StatisticsViewTab" Header="Statistics" Height="40" Width="207" IsEnabled="False">
+            <TabItem x:Name="ManagerDeliveryViewTab" Header="Delivery" Height="40" Width="206" IsEnabled="False" Visibility="Collapsed">
+                <uc:ManagerDeliveryView />
+            </TabItem>
+
+            <TabItem x:Name="StatisticsViewTab" Header="Statistics" Height="40" Width="206" IsEnabled="False">
                 <uc:StatisticsView />
             </TabItem>
 

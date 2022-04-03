@@ -42,7 +42,11 @@ namespace WPFApp.Views
             {
                 UsernameContentBox.Text = String.Empty;
                 PasswordContentBox.Password = String.Empty;
-                MainWindow.Instance.RefreshControlPanel(true);
+
+                var mainWindowInstance = MainWindow.Instance;
+                mainWindowInstance.isManager = drawAccessLevel();
+                mainWindowInstance.RefreshControlPanel(true);
+
                 MessageBox.Show("Successful login attempt", String.Empty, MessageBoxButton.OK, MessageBoxImage.Information);
             } else
             {
@@ -54,6 +58,12 @@ namespace WPFApp.Views
         private int RequestLogin(string username, string password)
         {
             return username == password ? 200 : 404;
+        }
+
+        private bool drawAccessLevel()
+        {
+            var random = new Random();
+            return random.Next() % 2 == 0;
         }
     }
 }

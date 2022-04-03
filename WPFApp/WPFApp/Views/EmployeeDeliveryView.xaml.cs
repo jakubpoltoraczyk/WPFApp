@@ -22,14 +22,14 @@ namespace WPFApp.Views
     /// <summary>
     /// Class which represents delivery view
     /// </summary>
-    public partial class DeliveryView : UserControl
+    public partial class EmployeeDeliveryView : UserControl
     {
         private bool isApplicationStarted = false;
 
         /// <summary>
         /// Create new instance of delivery view
         /// </summary>
-        public DeliveryView()
+        public EmployeeDeliveryView()
         {
             InitializeComponent();
             Loaded += ViewLoaded;
