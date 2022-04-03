@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,16 +16,16 @@ using System.Windows.Shapes;
 namespace WPFApp.Views
 {
     /// <summary>
-    /// Class which represents statistics view
+    /// Class which represents logout view
     /// </summary>
-    public partial class StatisticsView : UserControl
+    public partial class LogoutView : UserControl
     {
         private bool isApplicationStarted = false;
 
         /// <summary>
-        /// Create new instance of statistics view
+        /// Create new instance of logout view
         /// </summary>
-        public StatisticsView()
+        public LogoutView()
         {
             InitializeComponent();
             Loaded += ViewLoaed;
@@ -35,8 +34,6 @@ namespace WPFApp.Views
         /// <summary>
         /// Called when view has been just loaded
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void ViewLoaed(object sender, RoutedEventArgs e)
         {
             if (!isApplicationStarted)
@@ -45,7 +42,14 @@ namespace WPFApp.Views
                 return;
             }
 
-            Trace.WriteLine("Statistics view has been loaded!");
+            var response = MessageBox.Show("Do you want to logout?", string.Empty, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (response == MessageBoxResult.Yes)
+            {
+                MainWindow.Instance.RefreshControlPanel(false);
+            } else
+            {
+                MainWindow.Instance.RefreshControlPanel(true);
+            }
         }
     }
 }

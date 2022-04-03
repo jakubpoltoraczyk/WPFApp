@@ -23,6 +23,8 @@ namespace WPFApp.Views
     /// </summary>
     public partial class TaskView : UserControl
     {
+        private bool isApplicationStarted = false;
+
         /// <summary>
         /// Create new instance of task view
         /// </summary>
@@ -37,6 +39,12 @@ namespace WPFApp.Views
         /// </summary>
         private void ViewLoaded(Object sender, RoutedEventArgs e)
         {
+            if (!isApplicationStarted)
+            {
+                isApplicationStarted = true;
+                return;
+            }
+
             var indexList = new List<TextBlock>();
             var deadlineList = new List<DatePicker>();
             var descriptionList = new List<TextBlock>();

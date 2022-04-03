@@ -24,6 +24,8 @@ namespace WPFApp.Views
     /// </summary>
     public partial class DeliveryView : UserControl
     {
+        private bool isApplicationStarted = false;
+
         /// <summary>
         /// Create new instance of delivery view
         /// </summary>
@@ -38,6 +40,12 @@ namespace WPFApp.Views
         /// </summary>
         void ViewLoaded(Object sender, RoutedEventArgs e)
         {
+            if (!isApplicationStarted)
+            {
+                isApplicationStarted = true;
+                return;
+            }
+
             var dataClient = DataClient.Instance;
 
             var jsonData = dataClient.GET("PaletPlantsType");

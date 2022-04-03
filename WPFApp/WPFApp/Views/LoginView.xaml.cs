@@ -40,6 +40,8 @@ namespace WPFApp.Views
             int answer = RequestLogin(UsernameContentBox.Text, PasswordContentBox.Password.ToString());
             if (answer == 200)
             {
+                UsernameContentBox.Text = String.Empty;
+                PasswordContentBox.Password = String.Empty;
                 MainWindow.Instance.RefreshControlPanel(true);
                 MessageBox.Show("Successful login attempt", String.Empty, MessageBoxButton.OK, MessageBoxImage.Information);
             } else

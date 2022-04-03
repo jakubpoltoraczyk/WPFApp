@@ -10,20 +10,24 @@
         Title="MainWindow" Height="600" Width="800">
     <Grid>
         <TabControl x:Name="ControlPanel" >
-            <TabItem x:Name="LoginViewTab" Header="Login" Height="40" Width="195">
+            <TabItem x:Name="LoginViewTab" Header="Login" Height="40" Width="99">
                 <uc:LoginView />
             </TabItem>
 
-            <TabItem x:Name="TaskViewTab" Header="Tasks" Height="40" Width="195" IsEnabled="False">
+            <TabItem x:Name="TaskViewTab" Header="Tasks" Height="40" Width="194" IsEnabled="False">
                 <uc:TaskView />
             </TabItem>
-            
-            <TabItem x:Name="DeliveryViewTab" Header="Delivery" Height="40" Width="195" IsEnabled="False">
+
+            <TabItem x:Name="DeliveryViewTab" Header="Delivery" Height="40" Width="194" IsEnabled="False">
                 <uc:DeliveryView />
             </TabItem>
 
-            <TabItem x:Name="StatisticsViewTab" Header="Statistics" Height="40" Width="195" IsEnabled="False">
+            <TabItem x:Name="StatisticsViewTab" Header="Statistics" Height="40" Width="194" IsEnabled="False">
                 <uc:StatisticsView />
+            </TabItem>
+
+            <TabItem x:Name="LogoutViewTab" Header="Logout" Height="40" Width="99" IsEnabled="False">
+                <uc:LogoutView />
             </TabItem>
         </TabControl>
     </Grid>
