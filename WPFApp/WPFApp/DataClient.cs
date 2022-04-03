@@ -47,7 +47,15 @@ namespace WPFApp
             request.Method = "GET";
             request.ContentType = contentType;
 
-            var response = request.GetResponse();
+            WebResponse response = null;
+            try
+            {
+                response = request.GetResponse();
+            }
+            catch (WebException)
+            {
+                return String.Empty;
+            }
 
             var dataStream = response.GetResponseStream();
 

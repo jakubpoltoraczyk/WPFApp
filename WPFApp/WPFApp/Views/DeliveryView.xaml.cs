@@ -42,6 +42,11 @@ namespace WPFApp.Views
 
             var jsonData = dataClient.GET("PaletPlantsType");
 
+            if (string.IsNullOrEmpty(jsonData))
+            {
+                return;
+            }
+
             var deliveryProducts = JsonConvert.DeserializeObject<IList<DeliveryProduct>>(jsonData);
 
             DeliveryProductsBox.Items.Clear();

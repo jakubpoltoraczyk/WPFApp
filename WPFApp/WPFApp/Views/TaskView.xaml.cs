@@ -45,6 +45,11 @@ namespace WPFApp.Views
             var dataClient = DataClient.Instance;
             var jsonData = dataClient.GET("Palet");
 
+            if (string.IsNullOrEmpty(jsonData))
+            {
+                return;
+            }
+
             var palets = JsonConvert.DeserializeObject<IList<Palet>>(jsonData);
 
             foreach(var palet in palets)
