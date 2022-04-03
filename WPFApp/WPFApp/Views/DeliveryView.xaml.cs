@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFApp.Models;
 
 namespace WPFApp.Views
 {
@@ -37,11 +40,15 @@ namespace WPFApp.Views
         {
             var dataClient = DataClient.Instance;
 
-            var response = dataClient.GET("PaletPlantsType");
+            var jsonData = dataClient.GET("PaletPlantsType");
 
-            
+            var deliveryProducts = JsonConvert.DeserializeObject<IList<DeliveryProduct>>(jsonData);
 
-            Trace.WriteLine(response);
+            DeliveryProductsBox.Items.Clear();
+            foreach (var deliveryProduct in deliveryProducts)
+            {
+                DeliveryProductsBox.Items.Add(deliveryProduct.paletPlantsTypeName);
+            }
         }
     }
 }

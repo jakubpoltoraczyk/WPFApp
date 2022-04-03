@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFApp.Models;
 
 namespace WPFApp.Views
 {
@@ -40,11 +42,16 @@ namespace WPFApp.Views
             var descriptionList = new List<TextBlock>();
             var statusList = new List<Button>();
 
-            for(int i = 0; i < 50; ++i)
+            var dataClient = DataClient.Instance;
+            var jsonData = dataClient.GET("Palet");
+
+            var palets = JsonConvert.DeserializeObject<IList<Palet>>(jsonData);
+
+            foreach(var palet in palets)
             {
-                indexList.Add(CreateIndexTextBlock());
-                deadlineList.Add(CreateDeadlineTextBlock());
-                descriptionList.Add(CreateDescriptionTextBlock());
+                indexList.Add(CreateIndexTextBlock(palet.paletId));
+                deadlineList.Add(CreateDeadlineTextBlock(palet.dateOfPlanting));
+                descriptionList.Add(CreateDescriptionTextBlock(palet.paletNumber));
                 statusList.Add(CreateStatusButton());
             }
 
@@ -57,11 +64,11 @@ namespace WPFApp.Views
         /// <summary>
         /// Create text block component related to index field
         /// </summary>
-        private TextBlock CreateIndexTextBlock()
+        private TextBlock CreateIndexTextBlock(int index)
         {
             return new()
             {
-                Text = "0",
+                Text = index.ToString(),
                 TextAlignment = TextAlignment.Center,
                 FontSize = 18,
                 Margin = new (0, 10, 0, 10)
@@ -71,11 +78,11 @@ namespace WPFApp.Views
         /// <summary>
         /// Create date picker component related to deadline field
         /// </summary>
-        private DatePicker CreateDeadlineTextBlock()
+        private DatePicker CreateDeadlineTextBlock(string dateOfPlanting)
         {
             return new() {
                 Focusable = false,
-                SelectedDate = DateTime.Today,
+                SelectedDate = Convert.ToDateTime(dateOfPlanting),
                 Margin = new (0, 10, 0, 10)
             };
         }
@@ -83,11 +90,11 @@ namespace WPFApp.Views
         /// <summary>
         /// Create text block component related to description field
         /// </summary>
-        private TextBlock CreateDescriptionTextBlock()
+        private TextBlock CreateDescriptionTextBlock(int paletNumber)
         {
             return new()
             {
-                Text = "Some completely random text",
+                Text = "Some task associated with palet " + paletNumber.ToString(),
                 TextAlignment = TextAlignment.Center,
                 FontSize = 18,
                 Margin = new (0, 10, 0, 10)
