@@ -26,7 +26,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
         {
             if (ApplicationVersion.IsTestVersion())
             {
-                return new MoqActualTask().GetMoqList();
+                return new MoqActualTaskList().GetMoqList();
             }
             return _dataContext.ActualTask.ToList();
         }

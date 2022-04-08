@@ -13,6 +13,7 @@ namespace WebAppServer.MoqModels
         {
             return new List<UserCategory>()
             {
+                new UserCategory(){UserCategoryId=-1,UserCategoryName="unemployed"},
                 new UserCategory(){UserCategoryId=0,UserCategoryName="admin"},
                 new UserCategory(){UserCategoryId=1,UserCategoryName="manager"},
                 new UserCategory(){UserCategoryId=2,UserCategoryName="worker"},

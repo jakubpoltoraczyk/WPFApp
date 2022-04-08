@@ -13,7 +13,7 @@ namespace WebAppServer.MoqModels
         {
             return new List<PaletPlantsType>()
             {
-                new PaletPlantsType(){PaletPlantsTypeId=1,PaletPlantsTypeName="mery"},
+                new PaletPlantsType(){PaletPlantsTypeId=1,PaletPlantsTypeName="kawowiec"},
                 new PaletPlantsType(){PaletPlantsTypeId=2,PaletPlantsTypeName="chmiel"},
                 new PaletPlantsType(){PaletPlantsTypeId=3,PaletPlantsTypeName="kaktus"},
                 new PaletPlantsType(){PaletPlantsTypeId=4,PaletPlantsTypeName="tulipan"},

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppServer", "WebAppServe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests_WebAppServer", "Tests_WebAppServer\Tests_WebAppServer.csproj", "{4AFD4576-7872-4462-BCE7-BAE463B4208B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DedicModels_Library", "DedicModels_Library\DedicModels_Library.csproj", "{B2ED1434-DF82-47B2-9336-68E899F01551}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4AFD4576-7872-4462-BCE7-BAE463B4208B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AFD4576-7872-4462-BCE7-BAE463B4208B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AFD4576-7872-4462-BCE7-BAE463B4208B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2ED1434-DF82-47B2-9336-68E899F01551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2ED1434-DF82-47B2-9336-68E899F01551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2ED1434-DF82-47B2-9336-68E899F01551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2ED1434-DF82-47B2-9336-68E899F01551}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
