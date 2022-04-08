@@ -9,7 +9,7 @@ using WebAppServer.Models;
 using WebAppServer.MoqModels;
 using WebAppServer.SingletonsFlags;
 
-namespace WebAppServer.Controllers
+namespace WebAppServer.Controllers.DbBasicControllers
 {
     [Route("api/[controller]")]
     [ApiController]

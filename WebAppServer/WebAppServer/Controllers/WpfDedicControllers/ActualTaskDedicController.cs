@@ -13,22 +13,22 @@ namespace WebAppServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaletPlantsTypeController : ControllerBase
+    public class ActualTaskDedicController : ControllerBase
     {
         private readonly OracleDbContext _dataContext;
-        public PaletPlantsTypeController(OracleDbContext dbContext)
+        public ActualTaskDedicController(OracleDbContext dbContext)
         {
             _dataContext = dbContext;
         }
 
         [HttpGet]
-        public List<PaletPlantsType> Get()
+        public List<ActualTask> Get()
         {
             if (ApplicationVersion.IsTestVersion())
             {
-                return new MoqPaletPlantsTypeList().GetMoqList();
+                return new MoqActualTask().GetMoqList();
             }
-            return _dataContext.PaletPlantsType.ToList();
+            return _dataContext.ActualTask.ToList();
         }
     }
 }

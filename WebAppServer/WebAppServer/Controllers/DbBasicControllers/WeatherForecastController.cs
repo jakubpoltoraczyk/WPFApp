@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebAppServer.Controllers
+namespace WebAppServer.Controllers.DbBasicControllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -7,19 +7,21 @@ using WebAppServer.Models;
 
 namespace WebAppServer.MoqModels
 {
-    public class MoqPaletList : IMoqList<Palet>
+    public class MoqActualTask : IMoqList<ActualTask>
     {
-        public List<Palet> GetMoqList()
+        public List<ActualTask> GetMoqList()
         {
-            return new List<Palet>()
+            return new List<ActualTask>()
             {
-                new Palet(){PaletId=1,PaletNumber=1155,PaletPlantsType_Id=1,DateOfPlanting=DateTime.Now.AddDays(-7*1)},
-                new Palet(){PaletId=2,PaletNumber=2255,PaletPlantsType_Id=1,DateOfPlanting=DateTime.Now.AddDays(-7*1)},
-                new Palet(){PaletId=3,PaletNumber=3355,PaletPlantsType_Id=2,DateOfPlanting=DateTime.Now.AddDays(-7*1)},
-                new Palet(){PaletId=4,PaletNumber=1222,PaletPlantsType_Id=3,DateOfPlanting=DateTime.Now.AddDays(-7*1)},
-                new Palet(){PaletId=5,PaletNumber=5888,PaletPlantsType_Id=3,DateOfPlanting=DateTime.Now.AddDays(-7*1)},
-                new Palet(){PaletId=6,PaletNumber=1354,PaletPlantsType_Id=4,DateOfPlanting=DateTime.Now.AddDays(-7*1)},
-                new Palet(){PaletId=7,PaletNumber=9988,PaletPlantsType_Id=4,DateOfPlanting=DateTime.Now.AddDays(-7*1)},
+                new ActualTask(){ActualTaskId= 1, CareSchedule_Id= 1, Palet_Id= 1, RealizationDate= null, User_Id= null},
+                new ActualTask(){ActualTaskId= 2, CareSchedule_Id= 3, Palet_Id= 2, RealizationDate= null, User_Id= null},
+                new ActualTask(){ActualTaskId= 3, CareSchedule_Id= 4, Palet_Id= 3, RealizationDate= null, User_Id= null},
+                new ActualTask(){ActualTaskId= 4, CareSchedule_Id= 2, Palet_Id= 4, RealizationDate= null, User_Id= null},
+                new ActualTask(){ActualTaskId= 5, CareSchedule_Id= 6, Palet_Id= 5, RealizationDate= null, User_Id= null},
+                new ActualTask(){ActualTaskId= 6, CareSchedule_Id= 3, Palet_Id= 6, RealizationDate= null, User_Id= null},
+                new ActualTask(){ActualTaskId= 7, CareSchedule_Id= 2, Palet_Id= 7, RealizationDate= null, User_Id= null},
+                new ActualTask(){ActualTaskId= 8, CareSchedule_Id= 7, Palet_Id= 8, RealizationDate= null, User_Id= null},
+                new ActualTask(){ActualTaskId= 9, CareSchedule_Id= 2, Palet_Id= 9, RealizationDate= null, User_Id= null},
             };
         }
     }

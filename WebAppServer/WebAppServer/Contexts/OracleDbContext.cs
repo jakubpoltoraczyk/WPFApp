@@ -16,6 +16,7 @@ namespace WebAppServer.Contexts
         public virtual DbSet<PaletPlantsType> PaletPlantsType { get; set; }
         public virtual DbSet<CareSchedule> CareSchedule { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<ActualTask> ActualTask { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -9,26 +9,26 @@ using WebAppServer.Models;
 using WebAppServer.MoqModels;
 using WebAppServer.SingletonsFlags;
 
-namespace WebAppServer.Controllers
+namespace WebAppServer.Controllers.DbBasicControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TypeOfCareController : ControllerBase
+    public class PaletPlantsTypeController : ControllerBase
     {
         private readonly OracleDbContext _dataContext;
-        public TypeOfCareController(OracleDbContext dbContext)
+        public PaletPlantsTypeController(OracleDbContext dbContext)
         {
             _dataContext = dbContext;
         }
 
         [HttpGet]
-        public List<TypeOfCare> Get()
+        public List<PaletPlantsType> Get()
         {
             if (ApplicationVersion.IsTestVersion())
             {
-                return new MoqTypeOfCareList().GetMoqList();
+                return new MoqPaletPlantsTypeList().GetMoqList();
             }
-            return _dataContext.TypeOfCare.ToList();
+            return _dataContext.PaletPlantsType.ToList();
         }
     }
 }
