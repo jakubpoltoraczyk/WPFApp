@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebAppServer.Models
 {
+    /// <summary>
+    /// Class model that holds values about actual and done tasks
+    /// </summary>
     public class ActualTask
     {
         [Key]

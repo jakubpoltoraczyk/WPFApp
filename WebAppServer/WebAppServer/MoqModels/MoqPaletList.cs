@@ -9,6 +9,9 @@ namespace WebAppServer.MoqModels
 {
     public class MoqPaletList : IMoqList<Palet>
     {
+        /// <summary>
+        /// Moq-ed class model that holds informations about Palets
+        /// </summary>
         public List<Palet> GetMoqList()
         {
             return new List<Palet>()

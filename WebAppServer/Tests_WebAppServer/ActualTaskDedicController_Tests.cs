@@ -10,8 +10,14 @@ using WebAppServer.Models;
 
 namespace Tests_WebAppServer
 {
+    /// <summary>
+    /// Class to test controlers connection and retured type values
+    /// </summary>
     class ActualTaskDedicController_Tests
     {
+        /// <summary>
+        /// Checks that controler returns corect values
+        /// </summary>
         [Test]
         public void ControlerTest()
         {

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebAppServer.Models
 {
+    /// <summary>
+    /// Class model that holds informations about Palest Types
+    /// </summary>
     public class PaletPlantsType
     {
         [Key]

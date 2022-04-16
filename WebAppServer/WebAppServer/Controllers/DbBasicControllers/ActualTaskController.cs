@@ -21,6 +21,10 @@ namespace WebAppServer.Controllers.DbBasicControllers
             _dataContext = dbContext;
         }
 
+        /// <summary>
+        /// Rest Api Get method
+        /// </summary>
+        /// <returns>List of all Actual Tasks - not joined</returns>
         [HttpGet]
         public List<ActualTask> Get()
         {

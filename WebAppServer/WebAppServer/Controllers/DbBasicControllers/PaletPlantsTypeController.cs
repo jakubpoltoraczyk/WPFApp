@@ -21,6 +21,10 @@ namespace WebAppServer.Controllers.DbBasicControllers
             _dataContext = dbContext;
         }
 
+        /// <summary>
+        /// Rest Api Get method
+        /// </summary>
+        /// <returns>List of all Palets Plants Types</returns>
         [HttpGet]
         public List<PaletPlantsType> Get()
         {

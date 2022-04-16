@@ -21,6 +21,10 @@ namespace WebAppServer.Controllers.DbBasicControllers
             _dataContext = dbContext;
         }
 
+        /// <summary>
+        /// Rest Api Get method
+        /// </summary>
+        /// <returns>List of all User Categories</returns>
         [HttpGet]
         public List<UserCategory> Get()
         {

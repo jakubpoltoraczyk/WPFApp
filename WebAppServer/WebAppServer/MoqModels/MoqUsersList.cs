@@ -9,6 +9,9 @@ namespace WebAppServer.MoqModels
 {
     public class MoqUsersList : IMoqList<Users>
     {
+        /// <summary>
+        /// Moq-ed class model that holds informations about Users
+        /// </summary>
         public List<Users> GetMoqList()
         {
             return new List<Users>()

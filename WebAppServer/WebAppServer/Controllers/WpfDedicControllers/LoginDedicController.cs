@@ -20,7 +20,11 @@ namespace WebAppServer.Controllers.DbBasicControllers
         {
             _dataContext = dbContext;
         }
-
+        /// <summary>
+        /// Login method 
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <returns>if user exist, returns user category id, -1 if not </returns>
         [HttpPost]
         public int LogIn(string mail)                           //returns role_id
         {

@@ -21,6 +21,10 @@ namespace WebAppServer.Controllers.DbBasicControllers
             _dataContext = dbContext;
         }
 
+        /// <summary>
+        /// Rest Api Get method
+        /// </summary>
+        /// <returns>List of all Companies</returns>
         [HttpGet]
         public List<Company> Get()
         {
@@ -31,6 +35,10 @@ namespace WebAppServer.Controllers.DbBasicControllers
             return _dataContext.Company.ToList();
         }
 
+        /// <summary>
+        /// Rest Api Get method
+        /// </summary>
+        /// <returns>Company model that have matching id parameter</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Company>> GetCompany(int id)
         {
@@ -40,6 +48,11 @@ namespace WebAppServer.Controllers.DbBasicControllers
             }
             return inspection;
         }
+
+        /// <summary>
+        /// Rest Api Post method, to insert Company into database 
+        /// </summary>
+        /// <returns>Inserted Company</returns>
         [HttpPost]
         public async Task<ActionResult<Company>> PostInspection(Company company)
         {

@@ -9,6 +9,9 @@ namespace WebAppServer.MoqModels
 {
     public class MoqTypeOfCareList : IMoqList<TypeOfCare>
     {
+        /// <summary>
+        /// Moq-ed class model that holds informations about Types of Care
+        /// </summary>
         public List<TypeOfCare> GetMoqList()
         {
             return new List<TypeOfCare>()

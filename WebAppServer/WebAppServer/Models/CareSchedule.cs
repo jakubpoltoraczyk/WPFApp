@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebAppServer.Models
 {
+    /// <summary>
+    /// Class model that holds values about Care Shedule
+    /// </summary>
     public class CareSchedule
     {
         [Key]

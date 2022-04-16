@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebAppServer.Models
 {
+    /// <summary>
+    /// Class model that holds informations about User Categories
+    /// </summary>
     public class UserCategory
     {
         [Key]

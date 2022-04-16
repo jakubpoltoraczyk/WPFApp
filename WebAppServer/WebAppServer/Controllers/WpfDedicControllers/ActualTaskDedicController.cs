@@ -22,6 +22,10 @@ namespace WebAppServer.Controllers
             _dataContext = dbContext;
         }
 
+        /// <summary>
+        /// Rest Api Get method
+        /// </summary>
+        /// <returns>returns joined information of all actual tasks</returns>
         [HttpGet]
         public List<ActualTaskDedic> Get()
         {

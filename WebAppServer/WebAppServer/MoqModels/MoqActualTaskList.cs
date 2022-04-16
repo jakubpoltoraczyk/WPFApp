@@ -9,6 +9,9 @@ namespace WebAppServer.MoqModels
 {
     public class MoqActualTaskList : IMoqList<ActualTask>
     {
+        /// <summary>
+        /// Moq-ed class model that holds informations about Actual Tasks
+        /// </summary>
         public List<ActualTask> GetMoqList()
         {
             return new List<ActualTask>()

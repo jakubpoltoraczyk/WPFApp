@@ -9,6 +9,9 @@ namespace WebAppServer.MoqModels
 {
     public class MoqCompanyList : IMoqList<Company>
     {
+        /// <summary>
+        /// Moq-ed class model that holds informations about Companies
+        /// </summary>
         public List<Company> GetMoqList()
         {
             return new List<Company>()

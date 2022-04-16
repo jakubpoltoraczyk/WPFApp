@@ -9,6 +9,9 @@ namespace WebAppServer.MoqModels
 {
     public class MoqUserCategoryList : IMoqList<UserCategory>
     {
+        /// <summary>
+        /// Moq-ed class model that holds informations about User Categoris
+        /// </summary>
         public List<UserCategory> GetMoqList()
         {
             return new List<UserCategory>()

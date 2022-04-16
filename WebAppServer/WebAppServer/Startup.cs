@@ -7,8 +7,15 @@ using Microsoft.OpenApi.Models;
 
 namespace WebAppServer
 {
+    /// <summary>
+    /// Class for configure service at begining
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Startup method to set configuration
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -16,7 +23,10 @@ namespace WebAppServer
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>                                                                                     //hanges
@@ -39,8 +49,11 @@ namespace WebAppServer
             });
 
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
