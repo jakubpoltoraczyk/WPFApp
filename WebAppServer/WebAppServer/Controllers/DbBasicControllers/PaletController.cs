@@ -24,7 +24,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Get method
         /// </summary>
-        /// <returns>List of all Companies</returns>
+        /// <returns>List of all Palets</returns>
         [HttpGet]
         public List<Palet> Get()
         {
@@ -38,9 +38,9 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Get method
         /// </summary>
-        /// <returns>Company model that have matching id parameter</returns>
+        /// <returns>returns Palet model that have matching id parameter</returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult<Palet>> GetCompany(int id)
+        public async Task<ActionResult<Palet>> GetPalet(int id)
         {
             var inspection = await _dataContext.Palet.FindAsync(id);
             if (inspection == null)
@@ -53,7 +53,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Post method, to insert Company into database 
         /// </summary>
-        /// <returns>Inserted Company</returns>
+        /// <returns>Inserted Palet</returns>
         [HttpPost]
         public void Post(Palet company)
         {

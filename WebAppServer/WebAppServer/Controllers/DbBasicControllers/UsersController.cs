@@ -24,7 +24,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Get method
         /// </summary>
-        /// <returns>List of all Companies</returns>
+        /// <returns>List of all Users</returns>
         [HttpGet]
         public List<Users> Get()
         {
@@ -38,9 +38,9 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Get method
         /// </summary>
-        /// <returns>Company model that have matching id parameter</returns>
+        /// <returns>Users model that have matching id parameter</returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult<Users>> GetCompany(int id)
+        public async Task<ActionResult<Users>> GetUser(int id)
         {
             var inspection = await _dataContext.Users.FindAsync(id);
             if (inspection == null)
@@ -51,9 +51,9 @@ namespace WebAppServer.Controllers.DbBasicControllers
         }
 
         /// <summary>
-        /// Rest Api Post method, to insert Company into database 
+        /// Rest Api Post method, to insert Users into database 
         /// </summary>
-        /// <returns>Inserted Company</returns>
+        /// <returns>Inserted Users</returns>
         [HttpPost]
         public void Post(Users company)
         {

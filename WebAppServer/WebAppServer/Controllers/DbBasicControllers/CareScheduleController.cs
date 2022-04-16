@@ -24,7 +24,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Get method
         /// </summary>
-        /// <returns>List of all Companies</returns>
+        /// <returns>List of all CareSchedule</returns>
         [HttpGet]
         public List<CareSchedule> Get()
         {
@@ -38,9 +38,9 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Get method
         /// </summary>
-        /// <returns>Company model that have matching id parameter</returns>
+        /// <returns>return CareSchedule model that have matching id parameter</returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult<CareSchedule>> GetCompany(int id)
+        public async Task<ActionResult<CareSchedule>> GetCareSchedule(int id)
         {
             var inspection = await _dataContext.CareSchedule.FindAsync(id);
             if (inspection == null)
@@ -53,7 +53,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Post method, to insert Company into database 
         /// </summary>
-        /// <returns>Inserted Company</returns>
+        /// <returns>Inserted CareSchedule</returns>
         [HttpPost]
         public void Post(CareSchedule company)
         {
