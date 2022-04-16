@@ -24,15 +24,49 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Get method
         /// </summary>
-        /// <returns>List of all Palets</returns>
+        /// <returns>List of all Companies</returns>
         [HttpGet]
         public List<Palet> Get()
         {
             if (ApplicationVersion.IsTestVersion())
             {
-                return new MoqPaletList().GetMoqList();
+                return MoqPaletList.GetInstance().GetMoqList();
             }
             return _dataContext.Palet.ToList();
+        }
+
+        /// <summary>
+        /// Rest Api Get method
+        /// </summary>
+        /// <returns>Company model that have matching id parameter</returns>
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Palet>> GetCompany(int id)
+        {
+            var inspection = await _dataContext.Palet.FindAsync(id);
+            if (inspection == null)
+            {
+                return NotFound();
+            }
+            return inspection;
+        }
+
+        /// <summary>
+        /// Rest Api Post method, to insert Company into database 
+        /// </summary>
+        /// <returns>Inserted Company</returns>
+        [HttpPost]
+        public void Post(Palet company)
+        {
+            if (ApplicationVersion.IsTestVersion())
+            {
+                MoqPaletList.GetInstance().PushToMoqList(company);
+            }
+            else
+            {
+                _dataContext.Palet.Add(company);
+                _dataContext.SaveChangesAsync();
+            }
+            //return CreatedAtAction("GetCompany", new { id = company.CompanyId }, company);
         }
     }
 }

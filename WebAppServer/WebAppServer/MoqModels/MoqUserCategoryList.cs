@@ -7,20 +7,29 @@ using WebAppServer.Models;
 
 namespace WebAppServer.MoqModels
 {
-    public class MoqUserCategoryList : IMoqList<UserCategory>
+    public class MoqUserCategoryList : BaseMoqList<UserCategory>
     {
-        /// <summary>
-        /// Moq-ed class model that holds informations about User Categoris
-        /// </summary>
-        public List<UserCategory> GetMoqList()
+        private static MoqUserCategoryList _instance;
+        public static MoqUserCategoryList GetInstance()
         {
-            return new List<UserCategory>()
+            if (_instance == null)
             {
-                new UserCategory(){UserCategoryId=-1,UserCategoryName="unemployed"},
-                new UserCategory(){UserCategoryId=0,UserCategoryName="admin"},
-                new UserCategory(){UserCategoryId=1,UserCategoryName="manager"},
-                new UserCategory(){UserCategoryId=2,UserCategoryName="worker"},
-            };
+                _instance = new MoqUserCategoryList();
+                _data = new List<UserCategory>()
+                {
+                    new UserCategory(){UserCategoryId=-1,UserCategoryName="unemployed"},
+                    new UserCategory(){UserCategoryId=0,UserCategoryName="admin"},
+                    new UserCategory(){UserCategoryId=1,UserCategoryName="manager"},
+                    new UserCategory(){UserCategoryId=2,UserCategoryName="worker"},
+                };
+            }
+            return _instance;
+        }
+        static MoqUserCategoryList()
+        {
+
         }
     }
 }
+
+

@@ -7,20 +7,27 @@ using WebAppServer.Models;
 
 namespace WebAppServer.MoqModels
 {
-    public class MoqCompanyList : IMoqList<Company>
+    public class MoqCompanyList : BaseMoqList<Company>
     {
-        /// <summary>
-        /// Moq-ed class model that holds informations about Companies
-        /// </summary>
-        public List<Company> GetMoqList()
+        private static MoqCompanyList _instance;
+        public static MoqCompanyList GetInstance()
         {
-            return new List<Company>()
+            if (_instance == null)
             {
-                new Company(){CompanyId=1,CompanyName="Capgemini"},
-                new Company(){CompanyId=2,CompanyName="BTS"},
-                new Company(){CompanyId=3,CompanyName="Google"},
-                new Company(){CompanyId=4,CompanyName="PWr"},
-            };
+                _instance = new MoqCompanyList(); 
+                _data = new List<Company>()
+                {
+                    new Company(){CompanyId=1,CompanyName="Capgemini"},
+                    new Company(){CompanyId=2,CompanyName="BTS"},
+                    new Company(){CompanyId=3,CompanyName="Google"},
+                    new Company(){CompanyId=4,CompanyName="PWr"},
+                };
+            }
+            return _instance;
+        }
+        static MoqCompanyList()
+        {
+            
         }
     }
 }

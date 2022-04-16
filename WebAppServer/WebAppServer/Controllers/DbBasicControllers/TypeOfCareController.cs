@@ -24,15 +24,49 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Get method
         /// </summary>
-        /// <returns>List of all Types of care</returns>
+        /// <returns>List of all Companies</returns>
         [HttpGet]
         public List<TypeOfCare> Get()
         {
             if (ApplicationVersion.IsTestVersion())
             {
-                return new MoqTypeOfCareList().GetMoqList();
+                return MoqTypeOfCareList.GetInstance().GetMoqList();
             }
             return _dataContext.TypeOfCare.ToList();
+        }
+
+        /// <summary>
+        /// Rest Api Get method
+        /// </summary>
+        /// <returns>Company model that have matching id parameter</returns>
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TypeOfCare>> GetCompany(int id)
+        {
+            var inspection = await _dataContext.TypeOfCare.FindAsync(id);
+            if (inspection == null)
+            {
+                return NotFound();
+            }
+            return inspection;
+        }
+
+        /// <summary>
+        /// Rest Api Post method, to insert Company into database 
+        /// </summary>
+        /// <returns>Inserted Company</returns>
+        [HttpPost]
+        public void Post(TypeOfCare company)
+        {
+            if (ApplicationVersion.IsTestVersion())
+            {
+                MoqTypeOfCareList.GetInstance().PushToMoqList(company);
+            }
+            else
+            {
+                _dataContext.TypeOfCare.Add(company);
+                _dataContext.SaveChangesAsync();
+            }
+            //return CreatedAtAction("GetCompany", new { id = company.CompanyId }, company);
         }
     }
 }

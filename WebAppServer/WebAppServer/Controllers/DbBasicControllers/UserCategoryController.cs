@@ -24,15 +24,49 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Get method
         /// </summary>
-        /// <returns>List of all User Categories</returns>
+        /// <returns>List of all Companies</returns>
         [HttpGet]
         public List<UserCategory> Get()
         {
             if (ApplicationVersion.IsTestVersion())
             {
-                return new MoqUserCategoryList().GetMoqList();
+                return MoqUserCategoryList.GetInstance().GetMoqList();
             }
             return _dataContext.UserCategory.ToList();
+        }
+
+        /// <summary>
+        /// Rest Api Get method
+        /// </summary>
+        /// <returns>Company model that have matching id parameter</returns>
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserCategory>> GetCompany(int id)
+        {
+            var inspection = await _dataContext.UserCategory.FindAsync(id);
+            if (inspection == null)
+            {
+                return NotFound();
+            }
+            return inspection;
+        }
+
+        /// <summary>
+        /// Rest Api Post method, to insert Company into database 
+        /// </summary>
+        /// <returns>Inserted Company</returns>
+        [HttpPost]
+        public void Post(UserCategory company)
+        {
+            if (ApplicationVersion.IsTestVersion())
+            {
+                MoqUserCategoryList.GetInstance().PushToMoqList(company);
+            }
+            else
+            {
+                _dataContext.UserCategory.Add(company);
+                _dataContext.SaveChangesAsync();
+            }
+            //return CreatedAtAction("GetCompany", new { id = company.CompanyId }, company);
         }
     }
 }

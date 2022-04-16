@@ -12,5 +12,6 @@ namespace WebAppServer.MoqModels
     public interface IMoqList<T>
     {
         public List<T> GetMoqList();
+        public void PushToMoqList(T elem);
     }
 }

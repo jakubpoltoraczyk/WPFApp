@@ -24,13 +24,13 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Get method
         /// </summary>
-        /// <returns>List of all Care Schedules</returns>
+        /// <returns>List of all Companies</returns>
         [HttpGet]
         public List<CareSchedule> Get()
         {
             if (ApplicationVersion.IsTestVersion())
             {
-                return new MoqCareScheduleList().GetMoqList();
+                return MoqCareScheduleList.GetInstance().GetMoqList();
             }
             return _dataContext.CareSchedule.ToList();
         }
@@ -51,16 +51,22 @@ namespace WebAppServer.Controllers.DbBasicControllers
         }
 
         /// <summary>
-        /// Rest Api Post method, to insert Care Schedule into database 
+        /// Rest Api Post method, to insert Company into database 
         /// </summary>
-        /// <returns>Inserted Care Schedule</returns>
+        /// <returns>Inserted Company</returns>
         [HttpPost]
-        public async Task<ActionResult<CareSchedule>> PostInspection(CareSchedule company)
+        public void Post(CareSchedule company)
         {
-            _dataContext.CareSchedule.Add(company);
-            await _dataContext.SaveChangesAsync();
-
-            return CreatedAtAction("GetCompany", new { id = company.CareScheduleId }, company);
+            if (ApplicationVersion.IsTestVersion())
+            {
+                MoqCareScheduleList.GetInstance().PushToMoqList(company);
+            }
+            else
+            {
+                _dataContext.CareSchedule.Add(company);
+                _dataContext.SaveChangesAsync();
+            }
+            //return CreatedAtAction("GetCompany", new { id = company.CompanyId }, company);
         }
     }
 }

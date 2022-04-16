@@ -30,7 +30,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
         {
             if (ApplicationVersion.IsTestVersion())
             {
-                return new MoqCompanyList().GetMoqList();
+                return MoqCompanyList.GetInstance().GetMoqList();
             }
             return _dataContext.Company.ToList();
         }
@@ -54,12 +54,16 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// </summary>
         /// <returns>Inserted Company</returns>
         [HttpPost]
-        public async Task<ActionResult<Company>> PostInspection(Company company)
+        public void Post(Company company)
         {
-            _dataContext.Company.Add(company);
-            await _dataContext.SaveChangesAsync();
-
-            return CreatedAtAction("GetCompany", new { id = company.CompanyId }, company);
+            if (ApplicationVersion.IsTestVersion()){
+                MoqCompanyList.GetInstance().PushToMoqList(company);
+            }
+            else{
+                _dataContext.Company.Add(company);
+                _dataContext.SaveChangesAsync();
+            }
+            //return CreatedAtAction("GetCompany", new { id = company.CompanyId }, company);
         }
     }
 }

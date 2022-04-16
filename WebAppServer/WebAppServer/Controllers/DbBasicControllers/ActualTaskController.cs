@@ -24,15 +24,49 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Get method
         /// </summary>
-        /// <returns>List of all Actual Tasks - not joined</returns>
+        /// <returns>List of all Companies</returns>
         [HttpGet]
         public List<ActualTask> Get()
         {
             if (ApplicationVersion.IsTestVersion())
             {
-                return new MoqActualTaskList().GetMoqList();
+                return MoqActualTaskList.GetInstance().GetMoqList();
             }
             return _dataContext.ActualTask.ToList();
+        }
+
+        /// <summary>
+        /// Rest Api Get method
+        /// </summary>
+        /// <returns>Company model that have matching id parameter</returns>
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ActualTask>> GetCompany(int id)
+        {
+            var inspection = await _dataContext.ActualTask.FindAsync(id);
+            if (inspection == null)
+            {
+                return NotFound();
+            }
+            return inspection;
+        }
+
+        /// <summary>
+        /// Rest Api Post method, to insert Company into database 
+        /// </summary>
+        /// <returns>Inserted Company</returns>
+        [HttpPost]
+        public void Post(ActualTask company)
+        {
+            if (ApplicationVersion.IsTestVersion())
+            {
+                MoqActualTaskList.GetInstance().PushToMoqList(company);
+            }
+            else
+            {
+                _dataContext.ActualTask.Add(company);
+                _dataContext.SaveChangesAsync();
+            }
+            //return CreatedAtAction("GetCompany", new { id = company.CompanyId }, company);
         }
     }
 }
