@@ -54,8 +54,6 @@ namespace WPFApp.Views
                 mainWindowInstance.setAccessLevel(responseAccessLevel);
                 mainWindowInstance.RefreshControlPanel(true);
 
-                var welcomeText = "Successful login attempt - ";
-
                 MessageBox.Show("Successful login attempt", String.Empty, MessageBoxButton.OK, MessageBoxImage.Information);
             } else
             {

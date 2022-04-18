@@ -38,18 +38,8 @@ namespace WPFApp
         public UserCategory unemployed { get; set; }
 
         /// <summary>
-        /// User category related to admin access level
-        /// </summary>
-        public UserCategory admin { get; set; }
-
-        /// <summary>
         /// User category related to manager access level
         /// </summary>
         public UserCategory manager { get; set; }
-
-        /// <summary>
-        /// User category related to worker access level
-        /// </summary>
-        public UserCategory worker { get; set; }
     }
 }
