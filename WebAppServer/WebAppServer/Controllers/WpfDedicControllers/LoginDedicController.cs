@@ -28,7 +28,9 @@ namespace WebAppServer.Controllers.DbBasicControllers
         [HttpPost]
         public int LogIn(string mail)                           //returns role_id
         {
-            return 1;
+            return int.Parse(mail);
+
+
             List<Users> tmp;
             if (ApplicationVersion.IsTestVersion()){
                 tmp = new MoqUsersList().GetMoqList();
