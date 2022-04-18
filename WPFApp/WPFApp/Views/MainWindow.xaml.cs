@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFApp.Models;
 using WPFApp.Views;
 
 namespace WPFApp
@@ -26,7 +28,12 @@ namespace WPFApp
         /// <summary>
         /// Contains information if manager is logged in as current user
         /// </summary>
-        public bool isManager { get; set; }
+        private bool isManager { get; set; }
+        
+        /// <summary>
+        /// Contains ID of manager access level
+        /// </summary>
+        public int managerCategoryId { get; set; }
 
         /// <summary>
         /// Instance of main window class
@@ -49,6 +56,23 @@ namespace WPFApp
             InitializeComponent();
             RefreshControlPanel(false);
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
+            var dataClient = DataClient.Instance;
+            var jsonData = dataClient.GET("UserCategory");
+
+            if (string.IsNullOrEmpty(jsonData))
+            {
+                return;
+            }
+
+            var userCategories = JsonConvert.DeserializeObject<IList<UserCategory>>(jsonData);
+            foreach (var userCategory in userCategories)
+            {
+                if(userCategory.userCategoryName == "manager")
+                {
+                    managerCategoryId = userCategory.userCategoryId;
+                }
+            }
         }
 
         /// <summary>
@@ -66,6 +90,14 @@ namespace WPFApp
 
             EmployeeDeliveryViewTab.Visibility = isManager ? Visibility.Collapsed : Visibility.Visible;
             ManagerDeliveryViewTab.Visibility = isManager ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Set appropriate access level in regard to passed category ID
+        /// </summary>
+        public void setAccessLevel(int userCategoryID)
+        {
+            isManager = userCategoryID == managerCategoryId;
         }
     }
 }

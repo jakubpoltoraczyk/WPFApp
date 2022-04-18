@@ -37,14 +37,16 @@ namespace WPFApp.Views
         /// </summary>
         private void LoginButtonClicked(object sender, RoutedEventArgs e)
         {
-            int answer = RequestLogin(UsernameContentBox.Text, PasswordContentBox.Password.ToString());
-            if (answer == 200)
+            var dataClient = DataClient.Instance;
+            dataClient.POST("LoginDedic");
+            if (true)
             {
+
                 UsernameContentBox.Text = String.Empty;
                 PasswordContentBox.Password = String.Empty;
 
                 var mainWindowInstance = MainWindow.Instance;
-                mainWindowInstance.isManager = drawAccessLevel();
+                mainWindowInstance.setAccessLevel(drawAccessLevel());
                 mainWindowInstance.RefreshControlPanel(true);
 
                 MessageBox.Show("Successful login attempt", String.Empty, MessageBoxButton.OK, MessageBoxImage.Information);
@@ -60,10 +62,9 @@ namespace WPFApp.Views
             return username == password ? 200 : 404;
         }
 
-        private bool drawAccessLevel()
+        private int drawAccessLevel()
         {
-            var random = new Random();
-            return random.Next() % 2 == 0;
+            return 2;
         }
     }
 }

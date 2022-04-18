@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -68,6 +70,29 @@ namespace WPFApp
             response.Close();
 
             return responseFromServer;
+        }
+
+        private static readonly HttpClient client = new HttpClient();
+
+        /// <summary>
+        /// Call POST request to specified REST endpoint
+        /// </summary>
+        public string POST(string endpointName)
+        {
+            var someString = "kuba@gmail.com";
+
+            using (var wb = new WebClient())
+            {
+                var data = new NameValueCollection();
+                data["mail"] = "kuba@gmail.com";
+
+                var response = wb.UploadValues(baseUrl + endpointName, "POST", data);
+                string responseInString = Encoding.UTF8.GetString(response);
+
+                Trace.WriteLine("\n\n" + responseInString + "\n\n");
+            }
+
+            return "";
         }
     }
 }
