@@ -68,9 +68,16 @@ namespace WPFApp
                 {
                     currentData.unemployed = userCategory;
                 }
-                if(userCategory.userCategoryName == "manager")
+                else if(userCategory.userCategoryName == "admin")
+                {
+                    currentData.admin = userCategory;
+                }
+                else if(userCategory.userCategoryName == "manager")
                 {
                     currentData.manager = userCategory;
+                } else
+                {
+                    currentData.worker = userCategory;
                 }
             }
         }

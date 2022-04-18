@@ -18,48 +18,13 @@ using WPFApp.Models;
 namespace WPFApp.Views
 {
     /// <summary>
-    /// Class which represents delivery view
+    /// Logika interakcji dla klasy ManagerDeliveryView.xaml
     /// </summary>
     public partial class ManagerDeliveryView : UserControl
     {
-        private bool isApplicationStarted = false;
-
-        /// <summary>
-        /// Create new instance of delivery view
-        /// </summary>
         public ManagerDeliveryView()
         {
             InitializeComponent();
-            Loaded += ViewLoaded;
-        }
-
-        /// <summary>
-        /// Called when delivery view has been just loaded
-        /// </summary>
-        void ViewLoaded(Object sender, RoutedEventArgs e)
-        {
-            if (!isApplicationStarted)
-            {
-                isApplicationStarted = true;
-                return;
-            }
-
-            var dataClient = DataClient.Instance;
-
-            var jsonData = dataClient.GET("PaletPlantsType");
-
-            if (string.IsNullOrEmpty(jsonData))
-            {
-                return;
-            }
-
-            var deliveryProducts = JsonConvert.DeserializeObject<IList<DeliveryProduct>>(jsonData);
-
-            DeliveryProductsBox.Items.Clear();
-            foreach (var deliveryProduct in deliveryProducts)
-            {
-                DeliveryProductsBox.Items.Add(deliveryProduct.paletPlantsTypeName);
-            }
         }
     }
 }

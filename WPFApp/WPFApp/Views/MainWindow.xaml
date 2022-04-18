@@ -23,7 +23,7 @@
             </TabItem>
 
             <TabItem x:Name="ManagerDeliveryViewTab" Header="Delivery" Height="40" Width="206" IsEnabled="False" Visibility="Collapsed">
-                <uc:ManagerDeliveryView />
+                <uc:EmployeeDeliveryView />
             </TabItem>
 
             <TabItem x:Name="StatisticsViewTab" Header="Statistics" Height="40" Width="206" IsEnabled="False">
