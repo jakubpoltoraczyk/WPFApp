@@ -33,11 +33,11 @@ namespace WebAppServer.Controllers
             {
                 List<ActualTaskDedic> ret = new List<ActualTaskDedic>();
 
-                List<ActualTask> ActualTaskList = new MoqActualTaskList().GetMoqList();
-                List<Palet> PaletsList = new MoqPaletList().GetMoqList();
-                List<PaletPlantsType> PaletPlantsTypeList = new MoqPaletPlantsTypeList().GetMoqList();
-                List<CareSchedule> CareScheduleList = new MoqCareScheduleList().GetMoqList();
-                List<TypeOfCare> TypeOfCareList = new MoqTypeOfCareList().GetMoqList();
+                List<ActualTask> ActualTaskList = MoqActualTaskList.GetInstance().GetMoqList();
+                List<Palet> PaletsList = MoqPaletList.GetInstance().GetMoqList();
+                List<PaletPlantsType> PaletPlantsTypeList = MoqPaletPlantsTypeList.GetInstance().GetMoqList();
+                List<CareSchedule> CareScheduleList = MoqCareScheduleList.GetInstance().GetMoqList();
+                List<TypeOfCare> TypeOfCareList = MoqTypeOfCareList.GetInstance().GetMoqList();
 
                 // ----------------------------------------------------------------------------------do poprawy joinowanie-----------------------------------------------------------
                 foreach (ActualTask actualTask in ActualTaskList)
