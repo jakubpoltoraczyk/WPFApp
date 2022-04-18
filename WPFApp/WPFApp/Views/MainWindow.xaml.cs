@@ -84,7 +84,7 @@ namespace WPFApp
             TaskViewTab.IsEnabled = isSignedIn;
             EmployeeDeliveryViewTab.IsEnabled = isSignedIn;
             ManagerDeliveryViewTab.IsEnabled = isSignedIn;
-            StatisticsViewTab.IsEnabled = isSignedIn;
+            StatisticsViewTab.IsEnabled = isSignedIn && isManager;
             LogoutViewTab.IsEnabled = isSignedIn;
             ControlPanel.SelectedIndex = isSignedIn ? 1 : 0;
 

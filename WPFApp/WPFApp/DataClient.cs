@@ -71,7 +71,6 @@ namespace WPFApp
         {
             var request = (HttpWebRequest)WebRequest.Create(baseUrl + endpointName);
 
-            // var postData = "mail=" + Uri.EscapeDataString("musk@gmail.com");
             var data = Encoding.ASCII.GetBytes(postData);
 
             request.Method = "POST";

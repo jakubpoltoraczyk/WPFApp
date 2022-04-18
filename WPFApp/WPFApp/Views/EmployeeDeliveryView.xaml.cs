@@ -68,5 +68,27 @@ namespace WPFApp.Views
                 DeliveryProductsBox.Items.Add(deliveryProduct.paletPlantsTypeName);
             }
         }
+
+        private void MakeDeliveryButtonClicked(object sender, RoutedEventArgs e)
+        {
+            var choosenProductString = DeliveryProductsBox.Text;
+            int choosenProductNumber = 0;
+            foreach(var deliveryProduct in deliveryProducts)
+            {
+                if(deliveryProduct.paletPlantsTypeName == choosenProductString)
+                {
+                    choosenProductNumber = deliveryProduct.paletPlantsTypeId;
+                    break;
+                }
+            }
+
+            var postData = "paletId=" + Uri.EscapeDataString("0");
+            postData += "&paletNumber=" + Uri.EscapeDataString(DeliveryNumberOfPaletBox.Text);
+            postData += "&paletPlantsType_Id=" + Uri.EscapeDataString(choosenProductNumber.ToString());
+            postData += "&dateOfPlanting=" + Uri.EscapeDataString(DeliveryDatePicker.ToString());
+
+            var dataClient = DataClient.Instance;
+            dataClient.POST("Palet", postData);
+        }
     }
 }
