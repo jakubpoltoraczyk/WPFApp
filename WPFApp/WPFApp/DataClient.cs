@@ -6,8 +6,10 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using WPFApp.Models;
 
 namespace WPFApp
 {
@@ -87,6 +89,29 @@ namespace WPFApp
             var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
             return responseString;
+        }
+
+        public string PUT(string endpointName, string putData)
+        {
+            using (var client = new HttpClient())
+            {
+                RealizedTask payLoad = new RealizedTask();
+                payLoad.actualTaskId = 10;
+                payLoad.realizationDate = "2022-04-18T14:11:47.911Z";
+                payLoad.palet_Id = 1;
+                payLoad.user_Id = 2;
+                payLoad.careSchedule_Id = 4;
+                client.BaseAddress = new Uri(baseUrl);
+                var response = client.PutAsJsonAsync(endpointName, payLoad).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    Trace.WriteLine("Success");
+                }
+                else
+                    Trace.WriteLine("Error");
+            }
+
+            return "";
         }
     }
 }

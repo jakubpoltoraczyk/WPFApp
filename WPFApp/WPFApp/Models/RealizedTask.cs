@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WPFApp.Models
 {
-    public class ActualTask
+    public class RealizedTask
     {
         public int actualTaskId { get; set; }
         public string realizationDate { get; set; }
-        public int palet_Id {get; set;}
+        public int palet_Id { get; set; }
         public int user_Id { get; set; }
         public int careSchedule_Id { get; set; }
     }

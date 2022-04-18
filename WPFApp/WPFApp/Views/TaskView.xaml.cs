@@ -51,22 +51,26 @@ namespace WPFApp.Views
             var statusList = new List<Button>();
 
             var dataClient = DataClient.Instance;
-            var jsonData = dataClient.GET("Palet");
+            var jsonData = dataClient.GET("ActualTaskDedic");
 
             if (string.IsNullOrEmpty(jsonData))
             {
                 return;
             }
 
-            var palets = JsonConvert.DeserializeObject<IList<Palet>>(jsonData);
-
-            Trace.WriteLine(palets);
+            var palets = JsonConvert.DeserializeObject<IList<ActualTaskDedicated>>(jsonData);
 
             foreach (var palet in palets)
             {
-                indexList.Add(CreateIndexTextBlock(palet.paletId));
-                deadlineList.Add(CreateDeadlineTextBlock(palet.dateOfPlanting));
-                descriptionList.Add(CreateDescriptionTextBlock(palet.paletNumber));
+                indexList.Add(CreateIndexTextBlock(0));
+
+                var taskDeadline = palet.timeOfCare.ToString();
+                deadlineList.Add(CreateDeadlineTextBlock(taskDeadline));
+
+                var description = "Palet: " + palet.paletNumber + " (" + palet.paletPlantsTypeName
+                                    + " - " + palet.typeOfCareName + ")";
+                descriptionList.Add(CreateDescriptionTextBlock(description));
+
                 statusList.Add(CreateStatusButton());
             }
 
@@ -105,11 +109,11 @@ namespace WPFApp.Views
         /// <summary>
         /// Create text block component related to description field
         /// </summary>
-        private TextBlock CreateDescriptionTextBlock(int paletNumber)
+        private TextBlock CreateDescriptionTextBlock(string description)
         {
             return new()
             {
-                Text = "Some task associated with palet " + paletNumber.ToString(),
+                Text = description,
                 TextAlignment = TextAlignment.Center,
                 FontSize = 18,
                 Margin = new (0, 10, 0, 10)
@@ -122,7 +126,7 @@ namespace WPFApp.Views
         private Button CreateStatusButton()
         {
             Button button = new() {
-                Content = "To do",
+                Content = "Done",
                 Background = Brushes.IndianRed,
                 Margin = new (0, 12, 0, 12)
             };
@@ -136,18 +140,17 @@ namespace WPFApp.Views
         private void OnStatusButtonClick(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            button.Content = "Done";
             button.Background = Brushes.LightGreen;
 
             var result = MessageBox.Show("Do you want to close this task?", String.Empty, 
                                          MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                // todo: call here some POST related to deleting specified task
+                var dataClient = DataClient.Instance;
+                // dataClient.PUT("ActualTaskDedic", "");
                 ViewLoaded(this, e);
             } else
             {
-                button.Content = "To do";
                 button.Background = Brushes.IndianRed;
             }
         }
