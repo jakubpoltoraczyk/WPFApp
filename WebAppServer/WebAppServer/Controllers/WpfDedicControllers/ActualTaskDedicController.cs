@@ -1,6 +1,7 @@
 ﻿using DedicModels_Library;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,11 +34,11 @@ namespace WebAppServer.Controllers
             {
                 List<ActualTaskDedic> ret = new List<ActualTaskDedic>();
 
-                List<ActualTask> ActualTaskList = new MoqActualTaskList().GetMoqList();
-                List<Palet> PaletsList = new MoqPaletList().GetMoqList();
-                List<PaletPlantsType> PaletPlantsTypeList = new MoqPaletPlantsTypeList().GetMoqList();
-                List<CareSchedule> CareScheduleList = new MoqCareScheduleList().GetMoqList();
-                List<TypeOfCare> TypeOfCareList = new MoqTypeOfCareList().GetMoqList();
+                List<ActualTask> ActualTaskList = MoqActualTaskList.GetInstance().GetMoqList();
+                List<Palet> PaletsList = MoqPaletList.GetInstance().GetMoqList();
+                List<PaletPlantsType> PaletPlantsTypeList = MoqPaletPlantsTypeList.GetInstance().GetMoqList();
+                List<CareSchedule> CareScheduleList = MoqCareScheduleList.GetInstance().GetMoqList();
+                List<TypeOfCare> TypeOfCareList = MoqTypeOfCareList.GetInstance().GetMoqList();
 
                 // ----------------------------------------------------------------------------------do poprawy joinowanie-----------------------------------------------------------
                 foreach (ActualTask actualTask in ActualTaskList)
@@ -83,6 +84,51 @@ namespace WebAppServer.Controllers
             }
             //return _dataContext.ActualTask.ToList();
             throw new NotImplementedException("ActualTaskDedicController -> Get()");
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(long id, ActualTask actualTask)
+        {
+            //throw new NotImplementedException("ActualTaskDedicController -> Put()");
+
+            if (id != actualTask.ActualTaskId)
+            {
+                return BadRequest();
+            }
+            if (ApplicationVersion.IsTestVersion()){
+                List<ActualTask> list = MoqActualTaskList.GetInstance().GetMoqList();
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].ActualTaskId == actualTask.ActualTaskId )
+                    {
+                        //list[i].CareSchedule_Id = actualTask.CareSchedule_Id ;
+                        //list[i].Palet_Id = actualTask.Palet_Id ;
+                        list[i].RealizationDate = actualTask.RealizationDate ;
+                        list[i].User_Id = actualTask.User_Id ;
+                    }
+                }
+            }
+            else{
+
+                _dataContext.Entry(actualTask).State = EntityState.Modified;
+                try
+                {
+                    await _dataContext.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (true)//!TodoItemExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            return NoContent();
         }
     }
 }
