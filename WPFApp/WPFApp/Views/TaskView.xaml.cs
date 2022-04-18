@@ -147,7 +147,7 @@ namespace WPFApp.Views
             if (result == MessageBoxResult.Yes)
             {
                 var dataClient = DataClient.Instance;
-                // dataClient.PUT("ActualTaskDedic", "");
+                dataClient.PUT("ActualTaskDedic", "");
                 ViewLoaded(this, e);
             } else
             {

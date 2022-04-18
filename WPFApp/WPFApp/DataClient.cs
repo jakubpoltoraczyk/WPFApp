@@ -91,6 +91,21 @@ namespace WPFApp
             return responseString;
         }
 
+        public void POST2(string endpointName)
+        {
+            using (var wb = new WebClient())
+            {
+                var data = new NameValueCollection();
+                data["paletId"] = "0";
+                data["paletNumber"] = "0";
+                data["paletPlantsType_Id"] = "0";
+                data["dateOfPlanting"] = "2022-04-18T13:28:16.210Z";
+
+                var response = wb.UploadValues(baseUrl + endpointName, "POST", data);
+                string responseInString = Encoding.UTF8.GetString(response);
+            }
+        }
+
         public string PUT(string endpointName, string putData)
         {
             using (var client = new HttpClient())
