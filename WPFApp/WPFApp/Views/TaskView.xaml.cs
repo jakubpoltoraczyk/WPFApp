@@ -60,7 +60,9 @@ namespace WPFApp.Views
 
             var palets = JsonConvert.DeserializeObject<IList<Palet>>(jsonData);
 
-            foreach(var palet in palets)
+            Trace.WriteLine(palets);
+
+            foreach (var palet in palets)
             {
                 indexList.Add(CreateIndexTextBlock(palet.paletId));
                 deadlineList.Add(CreateDeadlineTextBlock(palet.dateOfPlanting));

@@ -37,16 +37,21 @@ namespace WPFApp.Views
         /// </summary>
         private void LoginButtonClicked(object sender, RoutedEventArgs e)
         {
-            var dataClient = DataClient.Instance;
-            dataClient.POST("LoginDedic");
-            if (true)
-            {
+            var loginText = UsernameContentBox.Text;
+            var passwordText = PasswordContentBox.Password.ToString();
+            var postData = "mail=" + Uri.EscapeDataString(loginText);
 
+            var dataClient = DataClient.Instance;
+            var currentData = CurrentData.Instance;
+
+            var responseAccessLevel = Convert.ToInt32(dataClient.POST("LoginDedic", postData));
+            if (responseAccessLevel != currentData.unemployed.userCategoryId && loginText == passwordText)
+            {
                 UsernameContentBox.Text = String.Empty;
                 PasswordContentBox.Password = String.Empty;
 
                 var mainWindowInstance = MainWindow.Instance;
-                mainWindowInstance.setAccessLevel(drawAccessLevel());
+                mainWindowInstance.setAccessLevel(responseAccessLevel);
                 mainWindowInstance.RefreshControlPanel(true);
 
                 MessageBox.Show("Successful login attempt", String.Empty, MessageBoxButton.OK, MessageBoxImage.Information);
@@ -54,17 +59,6 @@ namespace WPFApp.Views
             {
                 MessageBox.Show("Invalid username or password", String.Empty, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        // todo: remove this method when service logic will be ready
-        private int RequestLogin(string username, string password)
-        {
-            return username == password ? 200 : 404;
-        }
-
-        private int drawAccessLevel()
-        {
-            return 2;
         }
     }
 }

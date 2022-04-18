@@ -29,11 +29,6 @@ namespace WPFApp
         /// Contains information if manager is logged in as current user
         /// </summary>
         private bool isManager { get; set; }
-        
-        /// <summary>
-        /// Contains ID of manager access level
-        /// </summary>
-        public int managerCategoryId { get; set; }
 
         /// <summary>
         /// Instance of main window class
@@ -65,12 +60,17 @@ namespace WPFApp
                 return;
             }
 
+            var currentData = CurrentData.Instance;
             var userCategories = JsonConvert.DeserializeObject<IList<UserCategory>>(jsonData);
             foreach (var userCategory in userCategories)
             {
+                if(userCategory.userCategoryName == "unemployed")
+                {
+                    currentData.unemployed = userCategory;
+                }
                 if(userCategory.userCategoryName == "manager")
                 {
-                    managerCategoryId = userCategory.userCategoryId;
+                    currentData.manager = userCategory;
                 }
             }
         }
@@ -97,7 +97,8 @@ namespace WPFApp
         /// </summary>
         public void setAccessLevel(int userCategoryID)
         {
-            isManager = userCategoryID == managerCategoryId;
+            var currentData = CurrentData.Instance;
+            isManager = (currentData.manager.userCategoryId == userCategoryID);
         }
     }
 }

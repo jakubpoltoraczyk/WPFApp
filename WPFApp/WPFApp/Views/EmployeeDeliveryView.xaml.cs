@@ -36,6 +36,11 @@ namespace WPFApp.Views
         }
 
         /// <summary>
+        /// List of delivery products in employee delivery view
+        /// </summary>
+        private IList<DeliveryProduct> deliveryProducts;
+        
+        /// <summary>
         /// Called when delivery view has been just loaded
         /// </summary>
         void ViewLoaded(Object sender, RoutedEventArgs e)
@@ -55,7 +60,7 @@ namespace WPFApp.Views
                 return;
             }
 
-            var deliveryProducts = JsonConvert.DeserializeObject<IList<DeliveryProduct>>(jsonData);
+            deliveryProducts = JsonConvert.DeserializeObject<IList<DeliveryProduct>>(jsonData);
 
             DeliveryProductsBox.Items.Clear();
             foreach (var deliveryProduct in deliveryProducts)

@@ -29,10 +29,6 @@ namespace WPFApp
             }
         }
 
-        private string baseUrl = "https://localhost:44321/api/";
-
-        private string contentType = "application/json; charset=utf-8";
-
         /// <summary>
         /// Private constructor used to create only one instance of DataClient class
         /// </summary>
@@ -59,40 +55,39 @@ namespace WPFApp
                 return String.Empty;
             }
 
-            var dataStream = response.GetResponseStream();
+            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
-            var reader = new StreamReader(dataStream);
-
-            var responseFromServer = reader.ReadToEnd();
-
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-
-            return responseFromServer;
+            return responseString;
         }
 
-        private static readonly HttpClient client = new HttpClient();
+        private string baseUrl = "https://localhost:44321/api/";
+
+        private string contentType = "application/json; charset=utf-8";
 
         /// <summary>
         /// Call POST request to specified REST endpoint
         /// </summary>
-        public string POST(string endpointName)
+        public string POST(string endpointName, string postData)
         {
-            var someString = "kuba@gmail.com";
+            var request = (HttpWebRequest)WebRequest.Create(baseUrl + endpointName);
 
-            using (var wb = new WebClient())
+            // var postData = "mail=" + Uri.EscapeDataString("musk@gmail.com");
+            var data = Encoding.ASCII.GetBytes(postData);
+
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = data.Length;
+
+            using (var stream = request.GetRequestStream())
             {
-                var data = new NameValueCollection();
-                data["mail"] = "kuba@gmail.com";
-
-                var response = wb.UploadValues(baseUrl + endpointName, "POST", data);
-                string responseInString = Encoding.UTF8.GetString(response);
-
-                Trace.WriteLine("\n\n" + responseInString + "\n\n");
+                stream.Write(data, 0, data.Length);
             }
 
-            return "";
+            var response = (HttpWebResponse)request.GetResponse();
+
+            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+            return responseString;
         }
     }
 }
