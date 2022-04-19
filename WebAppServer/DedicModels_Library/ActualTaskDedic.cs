@@ -19,7 +19,7 @@ namespace DedicModels_Library
             public string PaletPlantsTypeName { get; set; }
 
         //public int CareSchedule_Id { get; set; }
-            public TimeSpan TimeOfCare { get; set; }
+            public DateTime TimeOfCare { get; set; }
             public int PriorityNumber { get; set; }
             //public int TypeOfCare_Id { get; set; }
                 public string TypeOfCareName { get; set; }

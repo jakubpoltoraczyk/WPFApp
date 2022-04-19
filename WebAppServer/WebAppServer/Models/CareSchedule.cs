@@ -15,7 +15,7 @@ namespace WebAppServer.Models
         public int CareScheduleId { get; set; }
         [StringLength(20)]
         public int TypeOfCare_Id { get; set; }
-        public TimeSpan TimeOfCare { get; set; }
+        public DateTime TimeOfCare { get; set; }
         public int PaletPlantsType_Id { get; set; }
         public int PriorityNumber { get; set; }
     }
