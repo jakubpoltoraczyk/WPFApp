@@ -7,7 +7,7 @@ namespace DedicModels_Library
     /// </summary>
     public class ActualTaskDedic
     {
-        //public int ActualTaskId { get; set; }
+        public int ActualTaskId { get; set; }
         //----------------Data to update--------------------------
         public int? User_Id { get; set; }                            
         public DateTime? RealizationDate { get; set; }

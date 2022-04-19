@@ -44,6 +44,7 @@ namespace WebAppServer.Controllers
                 foreach (ActualTask actualTask in ActualTaskList)
                 {
                     ActualTaskDedic tmp = new ActualTaskDedic();
+                    tmp.ActualTaskId = actualTask.ActualTaskId;
                     tmp.User_Id = actualTask.User_Id;
                     tmp.RealizationDate = actualTask.RealizationDate;
 
