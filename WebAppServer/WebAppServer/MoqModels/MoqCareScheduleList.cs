@@ -17,13 +17,13 @@ namespace WebAppServer.MoqModels
                 _instance = new MoqCareScheduleList();
                 _data = new List<CareSchedule>()
                 {
-                    new CareSchedule(){ CareScheduleId=1, TimeOfCare=DateTime.Now.AddHours(9),  PaletPlantsType_Id=1, PriorityNumber=5, TypeOfCare_Id=3 },
-                    new CareSchedule(){ CareScheduleId=2, TimeOfCare=DateTime.Now.AddHours(1),  PaletPlantsType_Id=1, PriorityNumber=2, TypeOfCare_Id=4 },
-                    new CareSchedule(){ CareScheduleId=3, TimeOfCare=DateTime.Now.AddHours(2),  PaletPlantsType_Id=2, PriorityNumber=2, TypeOfCare_Id=6 },
-                    new CareSchedule(){ CareScheduleId=4, TimeOfCare=DateTime.Now.AddDays(1),   PaletPlantsType_Id=2, PriorityNumber=3, TypeOfCare_Id=2 },
-                    new CareSchedule(){ CareScheduleId=5, TimeOfCare=DateTime.Now.AddDays(2),   PaletPlantsType_Id=3, PriorityNumber=2, TypeOfCare_Id=1 },
-                    new CareSchedule(){ CareScheduleId=6, TimeOfCare=DateTime.Now.AddDays(7),   PaletPlantsType_Id=4, PriorityNumber=2, TypeOfCare_Id=3 },
-                    new CareSchedule(){ CareScheduleId=7, TimeOfCare=DateTime.Now.AddMonths(1), PaletPlantsType_Id=5, PriorityNumber=1, TypeOfCare_Id=5 },
+                    new CareSchedule(){ CareScheduleId=1, TimeOfCare=new DateTime(0,0,7,2,0,0), PaletPlantsType_Id=1, PriorityNumber=5, TypeOfCare_Id=3 },
+                    new CareSchedule(){ CareScheduleId=2, TimeOfCare=new DateTime(0,0,1,5,0,0), PaletPlantsType_Id=1, PriorityNumber=2, TypeOfCare_Id=4 },
+                    new CareSchedule(){ CareScheduleId=3, TimeOfCare=new DateTime(0,0,2,6,0,0), PaletPlantsType_Id=2, PriorityNumber=2, TypeOfCare_Id=6 },
+                    new CareSchedule(){ CareScheduleId=4, TimeOfCare=new DateTime(0,0,3,4,0,0), PaletPlantsType_Id=2, PriorityNumber=3, TypeOfCare_Id=2 },
+                    new CareSchedule(){ CareScheduleId=5, TimeOfCare=new DateTime(0,0,7,2,0,0), PaletPlantsType_Id=3, PriorityNumber=2, TypeOfCare_Id=1 },
+                    new CareSchedule(){ CareScheduleId=6, TimeOfCare=new DateTime(0,0,5,9,0,0), PaletPlantsType_Id=4, PriorityNumber=2, TypeOfCare_Id=3 },
+                    new CareSchedule(){ CareScheduleId=7, TimeOfCare=new DateTime(0,0,7,1,0,0), PaletPlantsType_Id=5, PriorityNumber=1, TypeOfCare_Id=5 },
                 };
             }
             return _instance;
