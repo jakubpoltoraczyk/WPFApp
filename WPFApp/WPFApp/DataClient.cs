@@ -72,7 +72,7 @@ namespace WPFApp
             return responseString;
         }
 
-        public void POST(string endpointName, object palet)
+        public string POST(string endpointName, object palet)
         {
             var url = baseUrl + endpointName;
 
@@ -95,6 +95,8 @@ namespace WPFApp
 
             using var reader = new StreamReader(respStream);
             string data = reader.ReadToEnd();
+
+            return data;
         }
     }
 }

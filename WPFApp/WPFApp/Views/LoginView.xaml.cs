@@ -16,6 +16,7 @@ using System.Diagnostics;
 using System.Net;
 using System.IO;
 using System.Text.Json;
+using WPFApp.Models;
 
 namespace WPFApp.Views
 {
@@ -44,7 +45,11 @@ namespace WPFApp.Views
             var dataClient = DataClient.Instance;
             var currentData = CurrentData.Instance;
 
-            var responseAccessLevel = 1;
+            var login = new Login() { mail = UsernameContentBox.Text.Trim() };
+            var responseAccessLevel = Convert.ToInt32(dataClient.POST("LoginDedic", login));
+
+            Trace.WriteLine(login.mail + " : " + responseAccessLevel);
+
             if (responseAccessLevel != currentData.unemployed.userCategoryId && loginText == passwordText)
             {
                 UsernameContentBox.Text = String.Empty;
