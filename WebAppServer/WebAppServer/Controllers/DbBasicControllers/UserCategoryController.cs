@@ -15,7 +15,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
     [ApiController]
     public class UserCategoryController : ControllerBase
     {
-        private readonly OracleDbContext _dataContext;
+        private OracleDbContext _dataContext;
         public UserCategoryController(OracleDbContext dbContext)
         {
             _dataContext = dbContext;
@@ -53,7 +53,6 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Rest Api Post method, to insert UserCategory into database 
         /// </summary>
-        /// <returns>Inserted UserCategory</returns>
         [HttpPost]
         public void Post(UserCategory company)
         {
@@ -68,5 +67,32 @@ namespace WebAppServer.Controllers.DbBasicControllers
             }
             //return CreatedAtAction("GetCompany", new { id = company.CompanyId }, company);
         }
+
+        /*
+        /// <summary>
+        /// Rest Api Post method, to delete UserCategory from database 
+        /// </summary>
+        [HttpDelete]
+        public StatusCodeResult Delete()
+        {
+            if (ApplicationVersion.IsTestVersion())
+            {
+                return StatusCode(555);
+
+                //MoqUserCategoryList.GetInstance().PushToMoqList(company);
+            }
+            else
+            {
+                IQueryable<UserCategory> records = from m in _dataContext.UserCategory select m;
+
+                foreach (var record in records)
+                {
+                    _dataContext.UserCategory.Remove(record);
+                }
+                _dataContext.SaveChanges();
+                return StatusCode(200);
+            }
+        }
+        */
     }
 }

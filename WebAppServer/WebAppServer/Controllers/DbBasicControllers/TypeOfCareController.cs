@@ -15,7 +15,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
     [ApiController]
     public class TypeOfCareController : ControllerBase
     {
-        private readonly OracleDbContext _dataContext;
+        private OracleDbContext _dataContext;
         public TypeOfCareController(OracleDbContext dbContext)
         {
             _dataContext = dbContext;

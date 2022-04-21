@@ -15,7 +15,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly OracleDbContext _dataContext;
+        private OracleDbContext _dataContext;
         public UsersController(OracleDbContext dbContext)
         {
             _dataContext = dbContext;

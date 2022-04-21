@@ -15,7 +15,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
     [ApiController]
     public class LoginDedicController : ControllerBase
     {
-        private readonly OracleDbContext _dataContext;
+        private OracleDbContext _dataContext;
         public LoginDedicController(OracleDbContext dbContext)
         {
             _dataContext = dbContext;

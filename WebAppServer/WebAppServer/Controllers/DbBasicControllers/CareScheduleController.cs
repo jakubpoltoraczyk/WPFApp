@@ -15,7 +15,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
     [ApiController]
     public class CareScheduleController : ControllerBase
     {
-        private readonly OracleDbContext _dataContext;
+        private OracleDbContext _dataContext;
         public CareScheduleController(OracleDbContext dbContext)
         {
             _dataContext = dbContext;

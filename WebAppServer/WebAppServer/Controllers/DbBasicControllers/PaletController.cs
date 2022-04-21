@@ -16,7 +16,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
     [ApiController]
     public class PaletController : ControllerBase
     {
-        private readonly OracleDbContext _dataContext;
+        private OracleDbContext _dataContext;
         public PaletController(OracleDbContext dbContext)
         {
             _dataContext = dbContext;

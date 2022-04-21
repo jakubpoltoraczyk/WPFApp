@@ -17,7 +17,7 @@ namespace WebAppServer.Controllers
     [ApiController]
     public class ActualTaskDedicController : ControllerBase
     {
-        private readonly OracleDbContext _dataContext;
+        private OracleDbContext _dataContext;
         public ActualTaskDedicController(OracleDbContext dbContext)
         {
             _dataContext = dbContext;
