@@ -9,7 +9,7 @@ using Flurl.Http;
 namespace WPFApp.Views
 {
     /// <summary>
-    /// Class which represents delivery view
+    /// Class which represents delivery view for employee
     /// </summary>
     public partial class EmployeeDeliveryView : UserControl
     {
@@ -58,6 +58,9 @@ namespace WPFApp.Views
             }
         }
 
+        /// <summary>
+        /// Send delivery request to REST API when user clicked delivery button
+        /// </summary>
         private void MakeDeliveryButtonClicked(object sender, RoutedEventArgs e)
         {
             var choosenProductString = DeliveryProductsBox.Text;
@@ -71,14 +74,14 @@ namespace WPFApp.Views
                 }
             }
 
-            var postData = "paletId=" + Uri.EscapeDataString("0");
-            postData += "&paletNumber=" + Uri.EscapeDataString(DeliveryNumberOfPaletBox.Text);
-            postData += "&paletPlantsType_Id=" + Uri.EscapeDataString(choosenProductNumber.ToString());
-            postData += "&dateOfPlanting=" + Uri.EscapeDataString(DeliveryDatePicker.ToString());
+            var palet = new Palet();
+            palet.paletId = -1;
+            palet.paletNumber = Convert.ToInt32(DeliveryNumberOfPaletBox.Text);
+            palet.paletPlantsType_Id = choosenProductNumber;
+            palet.dateOfPlanting = (DateTime)DeliveryDatePicker.SelectedDate;
 
             var dataClient = DataClient.Instance;
-            // dataClient.POST("Palet", postData);
-            // dataClient.POST2("Palet");
+            dataClient.POST("Palet", palet);
         }
     }
 }

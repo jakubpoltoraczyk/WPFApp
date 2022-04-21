@@ -8,6 +8,7 @@ namespace WPFApp.Models
 {
     public class ActualTaskDedicated
     {
+        public int actualTaskId { get; set; }
         public string user_Id { get; set; }
         public string realizationDate { get; set; }
         public int paletNumber { get; set; }

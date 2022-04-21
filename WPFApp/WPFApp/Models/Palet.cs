@@ -11,6 +11,6 @@ namespace WPFApp.Models
         public int paletId { get; set; }
         public int paletNumber { get; set; }
         public int paletPlantsType_Id { get; set; }
-        public string dateOfPlanting { get; set; }
+        public DateTime dateOfPlanting { get; set; }
     }
 }

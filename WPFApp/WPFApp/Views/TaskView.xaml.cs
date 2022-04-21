@@ -62,7 +62,8 @@ namespace WPFApp.Views
 
             foreach (var palet in palets)
             {
-                indexList.Add(CreateIndexTextBlock(0));
+                var itemID = palet.actualTaskId;
+                indexList.Add(CreateIndexTextBlock(itemID));
 
                 var taskDeadline = palet.timeOfCare.ToString();
                 deadlineList.Add(CreateDeadlineTextBlock(taskDeadline));
@@ -147,7 +148,7 @@ namespace WPFApp.Views
             if (result == MessageBoxResult.Yes)
             {
                 var dataClient = DataClient.Instance;
-                dataClient.PUT("ActualTaskDedic", "");
+                // dataClient.PUT("ActualTaskDedic", "");
                 ViewLoaded(this, e);
             } else
             {

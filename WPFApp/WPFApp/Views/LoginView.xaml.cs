@@ -44,7 +44,7 @@ namespace WPFApp.Views
             var dataClient = DataClient.Instance;
             var currentData = CurrentData.Instance;
 
-            var responseAccessLevel = Convert.ToInt32(dataClient.POST("LoginDedic", postData));
+            var responseAccessLevel = 1;
             if (responseAccessLevel != currentData.unemployed.userCategoryId && loginText == passwordText)
             {
                 UsernameContentBox.Text = String.Empty;

@@ -18,7 +18,7 @@ using WPFApp.Models;
 namespace WPFApp.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy ManagerDeliveryView.xaml
+    ///  Class which represents delivery view for manager
     /// </summary>
     public partial class ManagerDeliveryView : UserControl
     {

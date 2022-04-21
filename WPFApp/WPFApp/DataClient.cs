@@ -39,6 +39,16 @@ namespace WPFApp
         }
 
         /// <summary>
+        /// Base url used to send REST API requests
+        /// </summary>
+        private string baseUrl = "https://localhost:44321/api/";
+
+        /// <summary>
+        /// Type of content in REST API requests
+        /// </summary>
+        private string contentType = "application/json; charset=utf-8";
+
+        /// <summary>
         /// Call GET request to specified REST endpoint
         /// </summary>
         public string GET(string endpointName)
@@ -62,71 +72,29 @@ namespace WPFApp
             return responseString;
         }
 
-        private string baseUrl = "https://localhost:44321/api/";
-
-        private string contentType = "application/json; charset=utf-8";
-
-        /// <summary>
-        /// Call POST request to specified REST endpoint
-        /// </summary>
-        public string POST(string endpointName, string postData)
+        public void POST(string endpointName, object palet)
         {
-            var request = (HttpWebRequest)WebRequest.Create(baseUrl + endpointName);
+            var url = baseUrl + endpointName;
 
-            var data = Encoding.ASCII.GetBytes(postData);
-
+            var request = WebRequest.Create(url);
             request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = data.Length;
 
-            using (var stream = request.GetRequestStream())
-            {
-                stream.Write(data, 0, data.Length);
-            }
+            var json = System.Text.Json.JsonSerializer.Serialize(palet);
+            byte[] byteArray = Encoding.UTF8.GetBytes(json);
 
-            var response = (HttpWebResponse)request.GetResponse();
+            request.ContentType = contentType;
+            request.ContentLength = byteArray.Length;
 
-            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            using var reqStream = request.GetRequestStream();
+            reqStream.Write(byteArray, 0, byteArray.Length);
 
-            return responseString;
-        }
+            using var response = request.GetResponse();
+            var tmp = (((HttpWebResponse)response).StatusDescription);
 
-        public void POST2(string endpointName)
-        {
-            using (var wb = new WebClient())
-            {
-                var data = new NameValueCollection();
-                data["paletId"] = "0";
-                data["paletNumber"] = "0";
-                data["paletPlantsType_Id"] = "0";
-                data["dateOfPlanting"] = "2022-04-18T13:28:16.210Z";
+            using var respStream = response.GetResponseStream();
 
-                var response = wb.UploadValues(baseUrl + endpointName, "POST", data);
-                string responseInString = Encoding.UTF8.GetString(response);
-            }
-        }
-
-        public string PUT(string endpointName, string putData)
-        {
-            using (var client = new HttpClient())
-            {
-                RealizedTask payLoad = new RealizedTask();
-                payLoad.actualTaskId = 10;
-                payLoad.realizationDate = "2022-04-18T14:11:47.911Z";
-                payLoad.palet_Id = 1;
-                payLoad.user_Id = 2;
-                payLoad.careSchedule_Id = 4;
-                client.BaseAddress = new Uri(baseUrl);
-                var response = client.PutAsJsonAsync(endpointName, payLoad).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    Trace.WriteLine("Success");
-                }
-                else
-                    Trace.WriteLine("Error");
-            }
-
-            return "";
+            using var reader = new StreamReader(respStream);
+            string data = reader.ReadToEnd();
         }
     }
 }
