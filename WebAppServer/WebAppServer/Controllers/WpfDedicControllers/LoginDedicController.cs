@@ -23,12 +23,10 @@ namespace WebAppServer.Controllers.DbBasicControllers
         /// <summary>
         /// Login method 
         /// </summary>
-        /// <param name="mail"></param>
         /// <returns>if user exist, returns user category id, -1 if not </returns>
         [HttpPost]
-        public int LogIn(string mail)                           //returns role_id
+        public int LogIn(Login login)                           //returns role_id
         {
-            return 1;
             List<Users> tmp;
             if (ApplicationVersion.IsTestVersion()){
                 tmp = MoqUsersList.GetInstance().GetMoqList();
@@ -40,7 +38,7 @@ namespace WebAppServer.Controllers.DbBasicControllers
             //-------------------------------------------------------------poprawic
             foreach (var item in tmp)
             {
-                if (item.Mail == mail){
+                if (item.Mail == login.mail){
                     return item.UserCategory_Id;
                 }
             }

@@ -19,8 +19,8 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Orientation="Vertical" >
-            <TextBox x:Name="UsernameContentBox"  Width="200" FontSize="20" Margin="0, 0, 0, 10" MaxLength="15" />
-            <PasswordBox x:Name="PasswordContentBox" Width="200" FontSize="20" MaxLength="15" />
+            <TextBox x:Name="UsernameContentBox"  Width="250" FontSize="20" Margin="0, 0, 0, 10" MaxLength="20" />
+            <PasswordBox x:Name="PasswordContentBox" Width="250" FontSize="20" MaxLength="20" />
         </StackPanel>
 
         <Button Click="LoginButtonClicked" Grid.Column="2" Margin="0, 100, 0, 0" Width="80" Height="40" 
