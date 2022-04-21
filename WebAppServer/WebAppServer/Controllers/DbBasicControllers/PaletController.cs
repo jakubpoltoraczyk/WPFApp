@@ -58,10 +58,6 @@ namespace WebAppServer.Controllers.DbBasicControllers
         [HttpPost]
         public void Post(Palet company)
         {
-            Trace.WriteLine(company.PaletId);
-            Trace.WriteLine(company.PaletNumber);
-            Trace.WriteLine(company.DateOfPlanting.ToString());
-            Trace.WriteLine(company.PaletPlantsType_Id);
             if (ApplicationVersion.IsTestVersion())
             {
                 MoqPaletList.GetInstance().PushToMoqList(company);
