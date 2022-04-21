@@ -25,6 +25,8 @@ namespace WPFApp.Views
     {
         private bool isApplicationStarted = false;
 
+        private IList<ActualTaskDedicated> tasks;
+
         /// <summary>
         /// Create new instance of task view
         /// </summary>
@@ -58,18 +60,18 @@ namespace WPFApp.Views
                 return;
             }
 
-            var palets = JsonConvert.DeserializeObject<IList<ActualTaskDedicated>>(jsonData);
+            tasks = JsonConvert.DeserializeObject<IList<ActualTaskDedicated>>(jsonData);
 
-            foreach (var palet in palets)
+            foreach (var task in tasks)
             {
-                var itemID = palet.actualTaskId;
+                var itemID = task.actualTaskId;
                 indexList.Add(CreateIndexTextBlock(itemID));
 
-                var taskDeadline = palet.timeOfCare.ToString();
+                var taskDeadline = task.timeOfCare.ToString();
                 deadlineList.Add(CreateDeadlineTextBlock(taskDeadline));
 
-                var description = "Palet: " + palet.paletNumber + " (" + palet.paletPlantsTypeName
-                                    + " - " + palet.typeOfCareName + ")";
+                var description = "Palet: " + task.paletNumber + " (" + task.paletPlantsTypeName
+                                    + " - " + task.typeOfCareName + ")";
                 descriptionList.Add(CreateDescriptionTextBlock(description));
 
                 statusList.Add(CreateStatusButton());
@@ -147,8 +149,16 @@ namespace WPFApp.Views
                                          MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
+                var index = 4;
+                var doneTask = new DoneTask();
+                doneTask.actualTaskId = tasks[index].actualTaskId;
+                doneTask.realizationDate = DateTime.Now;
+                doneTask.palet_Id = tasks[index].paletNumber;
+                doneTask.user_Id = Convert.ToInt32(tasks[index].user_Id);
+                doneTask.careSchedule_Id = -1;
+
                 var dataClient = DataClient.Instance;
-                // dataClient.PUT("ActualTaskDedic", "");
+                dataClient.PUT("ActualTaskDedic/" + doneTask.actualTaskId.ToString(), doneTask);
                 ViewLoaded(this, e);
             } else
             {

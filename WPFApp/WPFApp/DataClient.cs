@@ -72,14 +72,14 @@ namespace WPFApp
             return responseString;
         }
 
-        public string POST(string endpointName, object palet)
+        public string POST(string endpointName, object postData)
         {
             var url = baseUrl + endpointName;
 
             var request = WebRequest.Create(url);
             request.Method = "POST";
 
-            var json = System.Text.Json.JsonSerializer.Serialize(palet);
+            var json = System.Text.Json.JsonSerializer.Serialize(postData);
             byte[] byteArray = Encoding.UTF8.GetBytes(json);
 
             request.ContentType = contentType;
@@ -97,6 +97,34 @@ namespace WPFApp
             string data = reader.ReadToEnd();
 
             return data;
+        }
+
+        public void PUT(string endpointName, object putData)
+        {
+            using (var client = new System.Net.WebClient())
+            {
+                var url = baseUrl + endpointName;
+
+                var request = WebRequest.Create(url);
+                request.Method = "PUT";
+
+                var json = System.Text.Json.JsonSerializer.Serialize(putData);
+                byte[] byteArray = Encoding.UTF8.GetBytes(json);
+
+                request.ContentType = "application/json";
+                request.ContentLength = byteArray.Length;
+
+                using var reqStream = request.GetRequestStream();
+                reqStream.Write(byteArray, 0, byteArray.Length);
+
+                using var response = request.GetResponse();
+                var tmp = (((HttpWebResponse)response).StatusDescription);
+
+                using var respStream = response.GetResponseStream();
+
+                using var reader = new StreamReader(respStream);
+                string data = reader.ReadToEnd();
+            }
         }
     }
 }
