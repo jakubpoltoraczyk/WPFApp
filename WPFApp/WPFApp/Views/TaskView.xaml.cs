@@ -27,6 +27,8 @@ namespace WPFApp.Views
 
         private IList<ActualTaskDedicated> tasks;
 
+        private List<Button> statusList;
+
         /// <summary>
         /// Create new instance of task view
         /// </summary>
@@ -50,7 +52,7 @@ namespace WPFApp.Views
             var indexList = new List<TextBlock>();
             var deadlineList = new List<DatePicker>();
             var descriptionList = new List<TextBlock>();
-            var statusList = new List<Button>();
+            statusList = new List<Button>();
 
             var dataClient = DataClient.Instance;
             var jsonData = dataClient.GET("ActualTaskDedic");
@@ -149,7 +151,14 @@ namespace WPFApp.Views
                                          MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                var index = 4;
+                var index = 0;
+                for (; index < statusList.Count; ++index)
+                {
+                    if (statusList[index] == button)
+                    {
+                        break;
+                    }
+                }
                 var doneTask = new DoneTask();
                 doneTask.actualTaskId = tasks[index].actualTaskId;
                 doneTask.realizationDate = DateTime.Now;
