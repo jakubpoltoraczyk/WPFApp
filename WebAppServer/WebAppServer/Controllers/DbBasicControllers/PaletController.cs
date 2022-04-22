@@ -64,8 +64,28 @@ namespace WebAppServer.Controllers.DbBasicControllers
             }
             else
             {
+                company.PaletId = 0;                //to make sql auto increment this value
                 _dataContext.Palet.Add(company);
                 _dataContext.SaveChangesAsync();
+
+                Palet tmp = _dataContext.Palet.ToList().Where(m => m.PaletNumber == company.PaletNumber).OrderByDescending(m => m.PaletId).First(); //get inserted object
+                List<CareSchedule> careSchedulesList = _dataContext.CareSchedule.ToList().Where(m => m.PaletPlantsType_Id == tmp.PaletPlantsType_Id).ToList();
+                _dataContext.SaveChangesAsync();
+
+                for (int i = 0; i < careSchedulesList.Count; i++)
+                {
+                    ActualTask actual = new ActualTask()
+                    {
+                        //ActualTaskId = 0,
+                        Palet_Id = tmp.PaletId,
+                        CareSchedule_Id = careSchedulesList[i].CareScheduleId,
+                        //RealizationDate = null,
+                        //User_Id = null
+                    };
+                    _dataContext.ActualTask.Add(actual);
+                }
+                _dataContext.SaveChangesAsync();
+
             }
             //return CreatedAtAction("GetCompany", new { id = company.CompanyId }, company);
         }

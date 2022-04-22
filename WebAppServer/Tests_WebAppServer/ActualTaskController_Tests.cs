@@ -17,6 +17,24 @@ namespace Tests_WebAppServer
     class ActualTaskController_Tests
     {
         /// <summary>
+        /// test method to chect inserting actual data model
+        /// </summary>
+        [Test]
+        public void InsertTest()
+        {
+            OracleDbContext _dataContext = new OracleDbContext();
+            ActualTask actual = new ActualTask()
+            {
+                //ActualTaskId = 0,
+                Palet_Id = 30,
+                CareSchedule_Id = 1,
+                //RealizationDate = null,
+                //User_Id = null
+            };
+            _dataContext.ActualTask.Add(actual);
+            _dataContext.SaveChangesAsync();
+        }
+        /// <summary>
         /// Checks that controler returns corect values
         /// </summary>
         [Test]
