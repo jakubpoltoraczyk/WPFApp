@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAppServer</name>
+    </assembly>
+    <members>
+        <member name="T:WebAppServer.Contexts.OracleDbContext">
+            <summary>
+            Class that holds connection with oracle database - using entity framework
+            </summary>
+        </member>
+        <member name="M:WebAppServer.Contexts.OracleDbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Method to set connection string in Entity Framework configuration
+            </summary>
+            <param name="optionsBuilder"></param>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.ActualTaskController.Get">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>List of all ActualTasks</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.ActualTaskController.GetActualTask(System.Int32)">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>return ActualTask model that have matching id parameter</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.ActualTaskController.Post(WebAppServer.Models.ActualTask)">
+            <summary>
+            Rest Api Post method, to insert Company into database 
+            </summary>
+            <returns>Inserted ActualTask</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.CareScheduleController.Get">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>List of all CareSchedule</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.CareScheduleController.GetCareSchedule(System.Int32)">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>return CareSchedule model that have matching id parameter</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.CareScheduleController.Post(WebAppServer.Models.CareSchedule)">
+            <summary>
+            Rest Api Post method, to insert Company into database 
+            </summary>
+            <returns>Inserted CareSchedule</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.CompanyController.Get">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>List of all Companies</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.CompanyController.GetCompany(System.Int32)">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>Company model that have matching id parameter</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.CompanyController.Post(WebAppServer.Models.Company)">
+            <summary>
+            Rest Api Post method, to insert Company into database 
+            </summary>
+            <returns>Inserted Company</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.PaletController.Get">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>List of all Palets</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.PaletController.GetPalet(System.Int32)">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>returns Palet model that have matching id parameter</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.PaletController.Post(WebAppServer.Models.Palet)">
+            <summary>
+            Rest Api Post method, to insert Company into database 
+            </summary>
+            <returns>Inserted Palet</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.PaletPlantsTypeController.Get">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>List of all PaletPlantsTypes</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.PaletPlantsTypeController.GetPaletPlantsType(System.Int32)">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>return PaletPlantsType model that have matching id parameter</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.PaletPlantsTypeController.Post(WebAppServer.Models.PaletPlantsType)">
+            <summary>
+            Rest Api Post method, to insert PaletPlantsType into database 
+            </summary>
+            <returns>Inserted PaletPlantsType</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.TypeOfCareController.Get">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>List of all TypeOfCares</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.TypeOfCareController.GetTypeOfCare(System.Int32)">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>return TypeOfCare model that have matching id parameter</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.TypeOfCareController.Post(WebAppServer.Models.TypeOfCare)">
+            <summary>
+            Rest Api Post method, to insert TypeOfCare into database 
+            </summary>
+            <returns>Inserted TypeOfCare</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.UserCategoryController.Get">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>List of all UserCategories</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.UserCategoryController.GetUserCategory(System.Int32)">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>UserCategory model that have matching id parameter</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.UserCategoryController.Post(WebAppServer.Models.UserCategory)">
+            <summary>
+            Rest Api Post method, to insert UserCategory into database 
+            </summary>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.UsersController.Get">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>List of all Users</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.UsersController.GetUser(System.Int32)">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>Users model that have matching id parameter</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.UsersController.Post(WebAppServer.Models.Users)">
+            <summary>
+            Rest Api Post method, to insert Users into database 
+            </summary>
+            <returns>Inserted Users</returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.DbBasicControllers.LoginDedicController.LogIn(WebAppServer.Models.Login)">
+            <summary>
+            Login method 
+            </summary>
+            <returns>if user exist, returns user category id, -1 if not </returns>
+        </member>
+        <member name="M:WebAppServer.Controllers.ActualTaskDedicController.Get">
+            <summary>
+            Rest Api Get method
+            </summary>
+            <returns>returns joined information of all actual tasks</returns>
+        </member>
+        <member name="T:WebAppServer.Models.ActualTask">
+            <summary>
+            Class model that holds values about actual and done tasks
+            </summary>
+        </member>
+        <member name="T:WebAppServer.Models.CareSchedule">
+            <summary>
+            Class model that holds values about Care Shedule
+            </summary>
+        </member>
+        <member name="T:WebAppServer.Models.Company">
+            <summary>
+            Class model that holds informations about Companies
+            </summary>
+        </member>
+        <member name="T:WebAppServer.Models.Login">
+            <summary>
+            Class model that holds informations about login data
+            </summary>
+        </member>
+        <member name="T:WebAppServer.Models.Palet">
+            <summary>
+            Class model that holds informations about Palets
+            </summary>
+        </member>
+        <member name="T:WebAppServer.Models.PaletPlantsType">
+            <summary>
+            Class model that holds informations about Palest Types
+            </summary>
+        </member>
+        <member name="T:WebAppServer.Models.TypeOfCare">
+            <summary>
+            Class model that holds informations about Types of Care
+            </summary>
+        </member>
+        <member name="T:WebAppServer.Models.UserCategory">
+            <summary>
+            Class model that holds informations about User Categories
+            </summary>
+        </member>
+        <member name="T:WebAppServer.Models.Users">
+            <summary>
+            Class model that holds informations about Users
+            </summary>
+        </member>
+        <member name="T:WebAppServer.MoqModels.IMoqList`1">
+            <summary>
+            Interface of moqed database
+            </summary>
+            <typeparam name="T">type of table</typeparam>
+        </member>
+        <member name="M:WebAppServer.Program.Main(System.String[])">
+            <summary>
+            Main method that start and create host server application
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:WebAppServer.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Create Host Builder object controler
+            </summary>
+            <param name="args"></param>
+            <returns>Host Builder object</returns>
+        </member>
+        <member name="T:WebAppServer.SingletonsFlags.ApplicationVersion">
+            <summary>
+            Singleton class to switch between test dev version and database connected version
+            </summary>
+        </member>
+        <member name="M:WebAppServer.SingletonsFlags.ApplicationVersion.GetInstance">
+            <summary>
+            Method to return single instance of class
+            </summary>
+            <returns>Application Version instance</returns>
+        </member>
+        <member name="M:WebAppServer.SingletonsFlags.ApplicationVersion.IsTestVersion">
+            <summary>
+            Method to check that current working version of software is test or production
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebAppServer.Startup">
+            <summary>
+            Class for configure service at begining
+            </summary>
+        </member>
+        <member name="M:WebAppServer.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Startup method to set configuration
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:WebAppServer.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:WebAppServer.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

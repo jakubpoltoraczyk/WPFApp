@@ -1,0 +1,304 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WPFApp</name>
+    </assembly>
+    <members>
+        <member name="T:WPFApp.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:WPFApp.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:WPFApp.CurrentData">
+            <summary>
+            Singleton class which represents current data
+            </summary>
+        </member>
+        <member name="M:WPFApp.CurrentData.#ctor">
+            <summary>
+            Private constructor used to create only one instance of CurrentData class
+            </summary>
+        </member>
+        <member name="P:WPFApp.CurrentData.unemployed">
+            <summary>
+            User category related to unemployed access level
+            </summary>
+        </member>
+        <member name="P:WPFApp.CurrentData.manager">
+            <summary>
+            User category related to manager access level
+            </summary>
+        </member>
+        <member name="T:WPFApp.DataClient">
+            <summary>
+            Singleton class which represents REST data client
+            </summary>
+        </member>
+        <member name="M:WPFApp.DataClient.#ctor">
+            <summary>
+            Private constructor used to create only one instance of DataClient class
+            </summary>
+        </member>
+        <member name="F:WPFApp.DataClient.baseUrl">
+            <summary>
+            Base url used to send REST API requests
+            </summary>
+        </member>
+        <member name="F:WPFApp.DataClient.contentType">
+            <summary>
+            Type of content in REST API requests
+            </summary>
+        </member>
+        <member name="M:WPFApp.DataClient.GET(System.String)">
+            <summary>
+            Call GET request to specified REST endpoint
+            </summary>
+        </member>
+        <member name="T:WPFApp.Views.EmployeeDeliveryView">
+            <summary>
+            Class which represents delivery view for employee
+            </summary>
+            <summary>
+            EmployeeDeliveryView
+            </summary>
+        </member>
+        <member name="F:WPFApp.Views.EmployeeDeliveryView.deliveryProducts">
+            <summary>
+            List of delivery products in employee delivery view
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.EmployeeDeliveryView.#ctor">
+            <summary>
+            Create new instance of delivery view
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.EmployeeDeliveryView.ViewLoaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when delivery view has been just loaded
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.EmployeeDeliveryView.MakeDeliveryButtonClicked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Send delivery request to REST API when user clicked delivery button
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.EmployeeDeliveryView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:WPFApp.Views.LoginView">
+            <summary>
+            Class which represents login view
+            </summary>
+            <summary>
+            LoginView
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.LoginView.#ctor">
+            <summary>
+            Construct new instance of LoginView class
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.LoginView.LoginButtonClicked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when login button has been clicked
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.LoginView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:WPFApp.Views.LogoutView">
+            <summary>
+            Class which represents logout view
+            </summary>
+            <summary>
+            LogoutView
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.LogoutView.#ctor">
+            <summary>
+            Create new instance of logout view
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.LogoutView.ViewLoaed(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when view has been just loaded
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.LogoutView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:WPFApp.Views.ManagerDeliveryView">
+            <summary>
+             Class which represents delivery view for manager
+            </summary>
+            <summary>
+            ManagerDeliveryView
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.ManagerDeliveryView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:WPFApp.Views.StatisticsView">
+            <summary>
+            Class which represents statistics view
+            </summary>
+            <summary>
+            StatisticsView
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.StatisticsView.#ctor">
+            <summary>
+            Create new instance of statistics view
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.StatisticsView.ViewLoaed(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when view has been just loaded
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WPFApp.Views.StatisticsView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:WPFApp.Views.TaskView">
+            <summary>
+            Class which represents task view
+            </summary>
+            <summary>
+            TaskView
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.TaskView.#ctor">
+            <summary>
+            Create new instance of task view
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.TaskView.ViewLoaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when view has been just loaded
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.TaskView.CreateIndexTextBlock(System.Int32)">
+            <summary>
+            Create text block component related to index field
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.TaskView.CreateDeadlineTextBlock(System.String)">
+            <summary>
+            Create date picker component related to deadline field
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.TaskView.CreateDescriptionTextBlock(System.String)">
+            <summary>
+            Create text block component related to description field
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.TaskView.CreateStatusButton">
+            <summary>
+            Create button component related to current task status
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.TaskView.OnStatusButtonClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when status button has been clicked
+            </summary>
+        </member>
+        <member name="M:WPFApp.Views.TaskView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:WPFApp.MainWindow">
+            <summary>
+            Singleton class which represents main window and allows to manage control panel or its tab items
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="P:WPFApp.MainWindow.isManager">
+            <summary>
+            Contains information if manager is logged in as current user
+            </summary>
+        </member>
+        <member name="P:WPFApp.MainWindow.Instance">
+            <summary>
+            Instance of main window class
+            </summary>
+        </member>
+        <member name="M:WPFApp.MainWindow.#cctor">
+            <summary>
+            Static constructor, which allows to create instance of main window class
+            </summary>
+        </member>
+        <member name="M:WPFApp.MainWindow.#ctor">
+            <summary>
+            Private constructor, which creates new instance of main window class
+            </summary>
+        </member>
+        <member name="M:WPFApp.MainWindow.RefreshControlPanel(System.Boolean)">
+            <summary>
+            Refresh control panel status
+            </summary>
+        </member>
+        <member name="M:WPFApp.MainWindow.setAccessLevel(System.Int32)">
+            <summary>
+            Set appropriate access level in regard to passed category ID
+            </summary>
+        </member>
+        <member name="M:WPFApp.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>
