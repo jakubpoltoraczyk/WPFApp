@@ -78,13 +78,45 @@ namespace WebAppServer.Controllers
                             }
                         }
                     }
-                    ret.Add(tmp);
+                    if (
+                        tmp.DateOfPlanting != new DateTime() &&
+                        tmp.PaletPlantsTypeName != null &&
+                        tmp.TimeOfCare != new DateTime() &&
+                        tmp.TypeOfCareName != null
+                        )
+                    {
+                        ret.Add(tmp);
+                    }
                 }
-
                 return ret;
             }
-            //return _dataContext.ActualTask.ToList();
+            else
+            {
+                var query = from ActualTask in _dataContext.ActualTask
+                            from Palet in _dataContext.Palet.Where(Palet => ActualTask.Palet_Id == Palet.PaletId)
+                            from PaletPlantsType in _dataContext.PaletPlantsType.Where(PaletPlantsType => Palet.PaletPlantsType_Id == PaletPlantsType.PaletPlantsTypeId)
+                            from CareSchedule in _dataContext.CareSchedule.Where(CareSchedule => ActualTask.CareSchedule_Id == CareSchedule.CareScheduleId)
+                            from TypeOfCare in _dataContext.TypeOfCare.Where(TypeOfCare => CareSchedule.TypeOfCare_Id == TypeOfCare.TypeOfCareId)
+                            select new ActualTaskDedic()
+                            {
+                                ActualTaskId = ActualTask.ActualTaskId,
+                                RealizationDate = ActualTask.RealizationDate,
+                                User_Id = ActualTask.User_Id,
+                                PaletNumber = Palet.PaletNumber,
+                                DateOfPlanting = Palet.DateOfPlanting,
+                                PaletPlantsTypeName = PaletPlantsType.PaletPlantsTypeName,
+                                PriorityNumber = CareSchedule.PriorityNumber,
+                                TimeOfCare = CareSchedule.TimeOfCare,
+                                TypeOfCareName = TypeOfCare.TypeOfCareName
+                            };
+                return query.ToList();
+            }
             throw new NotImplementedException("ActualTaskDedicController -> Get()");
+        }
+
+        private void conv_to_ActualTaskDedic_List()
+        {
+
         }
 
         [HttpPut("{id}")]
@@ -96,21 +128,22 @@ namespace WebAppServer.Controllers
             {
                 return BadRequest();
             }
-            if (ApplicationVersion.IsTestVersion()){
+            if (ApplicationVersion.IsTestVersion())
+            {
                 List<ActualTask> list = MoqActualTaskList.GetInstance().GetMoqList();
                 for (int i = 0; i < list.Count; i++)
                 {
-                    if (list[i].ActualTaskId == actualTask.ActualTaskId )
+                    if (list[i].ActualTaskId == actualTask.ActualTaskId)
                     {
                         //list[i].CareSchedule_Id = actualTask.CareSchedule_Id ;
                         //list[i].Palet_Id = actualTask.Palet_Id ;
-                        list[i].RealizationDate = actualTask.RealizationDate ;
-                        list[i].User_Id = actualTask.User_Id ;
+                        list[i].RealizationDate = actualTask.RealizationDate;
+                        list[i].User_Id = actualTask.User_Id;
                     }
                 }
             }
-            else{
-
+            else
+            {
                 _dataContext.Entry(actualTask).State = EntityState.Modified;
                 try
                 {
