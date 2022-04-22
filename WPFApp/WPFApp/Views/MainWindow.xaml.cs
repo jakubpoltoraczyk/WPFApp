@@ -53,14 +53,16 @@ namespace WPFApp
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             var dataClient = DataClient.Instance;
-            var jsonData = dataClient.GET("UserCategory");
+            var currentData = CurrentData.Instance;
 
+            var jsonData = dataClient.GET("UserCategory");
             if (string.IsNullOrEmpty(jsonData))
             {
+                currentData.unemployed = new UserCategory() { userCategoryId = -1, userCategoryName = "unemployed" };
+                currentData.manager = new UserCategory() { userCategoryId = -1, userCategoryName = "manager" };
                 return;
             }
 
-            var currentData = CurrentData.Instance;
             var userCategories = JsonConvert.DeserializeObject<IList<UserCategory>>(jsonData);
             foreach (var userCategory in userCategories)
             {

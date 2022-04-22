@@ -16,18 +16,19 @@ namespace WPFApp.Views
         private bool isApplicationStarted = false;
 
         /// <summary>
+        /// List of delivery products in employee delivery view
+        /// </summary>
+        private IList<DeliveryProduct> deliveryProducts;
+
+        /// <summary>
         /// Create new instance of delivery view
         /// </summary>
         public EmployeeDeliveryView()
         {
             InitializeComponent();
             Loaded += ViewLoaded;
+            deliveryProducts = new List<DeliveryProduct>();
         }
-
-        /// <summary>
-        /// List of delivery products in employee delivery view
-        /// </summary>
-        private IList<DeliveryProduct> deliveryProducts;
         
         /// <summary>
         /// Called when delivery view has been just loaded
@@ -43,7 +44,6 @@ namespace WPFApp.Views
             var dataClient = DataClient.Instance;
 
             var jsonData = dataClient.GET("PaletPlantsType");
-
             if (string.IsNullOrEmpty(jsonData))
             {
                 return;
@@ -120,7 +120,6 @@ namespace WPFApp.Views
 
             var dataClient = DataClient.Instance;
             dataClient.POST("Palet", palet);
-
         }
     }
 }

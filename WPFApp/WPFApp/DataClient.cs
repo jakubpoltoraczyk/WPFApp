@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using WPFApp.Models;
 
 namespace WPFApp
@@ -53,65 +54,40 @@ namespace WPFApp
         /// </summary>
         public string GET(string endpointName)
         {
-            var request = WebRequest.Create(baseUrl + endpointName);
-            request.Method = "GET";
-            request.ContentType = contentType;
-
-            WebResponse response = null;
             try
             {
+                var request = WebRequest.Create(baseUrl + endpointName);
+                request.Method = "GET";
+                request.ContentType = contentType;
+
+                WebResponse response = null;
                 response = request.GetResponse();
-            }
-            catch (WebException)
+
+                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+                return responseString;
+            } 
+            catch(Exception ex)
             {
+                MessageBox.Show("Server response is not available", String.Empty,
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
                 return String.Empty;
             }
-
-            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
-            return responseString;
         }
 
         public string POST(string endpointName, object postData)
         {
-            var url = baseUrl + endpointName;
-
-            var request = WebRequest.Create(url);
-            request.Method = "POST";
-
-            var json = System.Text.Json.JsonSerializer.Serialize(postData);
-            byte[] byteArray = Encoding.UTF8.GetBytes(json);
-
-            request.ContentType = contentType;
-            request.ContentLength = byteArray.Length;
-
-            using var reqStream = request.GetRequestStream();
-            reqStream.Write(byteArray, 0, byteArray.Length);
-
-            using var response = request.GetResponse();
-            var tmp = (((HttpWebResponse)response).StatusDescription);
-
-            using var respStream = response.GetResponseStream();
-
-            using var reader = new StreamReader(respStream);
-            string data = reader.ReadToEnd();
-
-            return data;
-        }
-
-        public void PUT(string endpointName, object putData)
-        {
-            using (var client = new System.Net.WebClient())
+            try
             {
                 var url = baseUrl + endpointName;
 
                 var request = WebRequest.Create(url);
-                request.Method = "PUT";
+                request.Method = "POST";
 
-                var json = System.Text.Json.JsonSerializer.Serialize(putData);
+                var json = System.Text.Json.JsonSerializer.Serialize(postData);
                 byte[] byteArray = Encoding.UTF8.GetBytes(json);
 
-                request.ContentType = "application/json";
+                request.ContentType = contentType;
                 request.ContentLength = byteArray.Length;
 
                 using var reqStream = request.GetRequestStream();
@@ -124,6 +100,53 @@ namespace WPFApp
 
                 using var reader = new StreamReader(respStream);
                 string data = reader.ReadToEnd();
+
+                return data;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Server response is not available", String.Empty,
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return String.Empty;
+            }
+        }
+
+        public string PUT(string endpointName, object putData)
+        {
+            try
+            {
+                using (var client = new System.Net.WebClient())
+                {
+                    var url = baseUrl + endpointName;
+
+                    var request = WebRequest.Create(url);
+                    request.Method = "PUT";
+
+                    var json = System.Text.Json.JsonSerializer.Serialize(putData);
+                    byte[] byteArray = Encoding.UTF8.GetBytes(json);
+
+                    request.ContentType = "application/json";
+                    request.ContentLength = byteArray.Length;
+
+                    using var reqStream = request.GetRequestStream();
+                    reqStream.Write(byteArray, 0, byteArray.Length);
+
+                    using var response = request.GetResponse();
+                    var tmp = (((HttpWebResponse)response).StatusDescription);
+
+                    using var respStream = response.GetResponseStream();
+
+                    using var reader = new StreamReader(respStream);
+
+                    string data = reader.ReadToEnd();
+                    return data;
+                }
+            } 
+            catch(Exception ex)
+            {
+                MessageBox.Show("Server response is not available", String.Empty,
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return String.Empty;
             }
         }
     }

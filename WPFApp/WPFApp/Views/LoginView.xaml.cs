@@ -46,10 +46,14 @@ namespace WPFApp.Views
             var currentData = CurrentData.Instance;
 
             var login = new Login() { mail = UsernameContentBox.Text.Trim() };
-            var responseAccessLevel = Convert.ToInt32(dataClient.POST("LoginDedic", login));
 
-            Trace.WriteLine(login.mail + " : " + responseAccessLevel);
+            var response = dataClient.POST("LoginDedic", login);
+            if (string.IsNullOrEmpty(response))
+            {
+                return;
+            }
 
+            var responseAccessLevel = Convert.ToInt32(response);
             if (responseAccessLevel != currentData.unemployed.userCategoryId && loginText == passwordText)
             {
                 UsernameContentBox.Text = String.Empty;

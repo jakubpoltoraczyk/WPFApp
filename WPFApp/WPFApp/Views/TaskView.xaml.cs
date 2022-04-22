@@ -55,8 +55,8 @@ namespace WPFApp.Views
             statusList = new List<Button>();
 
             var dataClient = DataClient.Instance;
+           
             var jsonData = dataClient.GET("ActualTaskDedic");
-
             if (string.IsNullOrEmpty(jsonData))
             {
                 return;
@@ -167,7 +167,13 @@ namespace WPFApp.Views
                 doneTask.careSchedule_Id = -1;
 
                 var dataClient = DataClient.Instance;
-                dataClient.PUT("ActualTaskDedic/" + doneTask.actualTaskId.ToString(), doneTask);
+
+                var response = dataClient.PUT("ActualTaskDedic/" + doneTask.actualTaskId.ToString(), doneTask);
+                if (string.IsNullOrEmpty(response))
+                {
+                    button.Background = Brushes.IndianRed;
+                }
+
                 ViewLoaded(this, e);
             } else
             {
