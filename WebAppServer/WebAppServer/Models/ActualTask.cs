@@ -13,7 +13,7 @@ namespace WebAppServer.Models
     {
         [Key]
         public int ActualTaskId { get; set; }
-        public DateTime? RealizationDate { get; set; }               //data faktycznego zrobienia przez usera,  data kiedy powinno sie zrobic -> obliczona z Palet.DateOfPlanting + CareSchedule.TimeOfCare
+        public DateTime? RealizationDate { get; set; }               
         public int Palet_Id { get; set; }
         public int? User_Id { get; set; }                            // id usera który wykonal zadanie
         public int CareSchedule_Id { get; set; }
