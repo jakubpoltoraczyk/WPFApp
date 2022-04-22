@@ -76,12 +76,51 @@ namespace WPFApp.Views
 
             var palet = new Palet();
             palet.paletId = -1;
-            palet.paletNumber = Convert.ToInt32(DeliveryNumberOfPaletBox.Text);
-            palet.paletPlantsType_Id = choosenProductNumber;
-            palet.dateOfPlanting = (DateTime)DeliveryDatePicker.SelectedDate;
+
+            if (DeliveryNumberOfPaletBox.Text != String.Empty)
+            {
+                palet.paletNumber = Convert.ToInt32(DeliveryNumberOfPaletBox.Text);
+            } else
+            {
+                MessageBox.Show("Palet number can not be empty", String.Empty,
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (choosenProductNumber != 0)
+            {
+                palet.paletPlantsType_Id = choosenProductNumber;
+            } else
+            {
+                MessageBox.Show("Chosen product can not be empty", String.Empty,
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                var chosenDate = (DateTime)DeliveryDatePicker.SelectedDate;
+                if (chosenDate != null && chosenDate > DateTime.Now)
+                {
+                    palet.dateOfPlanting = (DateTime)DeliveryDatePicker.SelectedDate;
+                }
+                else
+                {
+                    MessageBox.Show("Date has to be later than " + DateTime.Now.ToString(), String.Empty,
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+            }
+            catch(System.InvalidOperationException)
+            {
+                MessageBox.Show("Date can not be empty", String.Empty,
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
             var dataClient = DataClient.Instance;
             dataClient.POST("Palet", palet);
+
         }
     }
 }

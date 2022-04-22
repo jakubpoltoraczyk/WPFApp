@@ -30,7 +30,7 @@ namespace WebAppServer.SingletonsFlags
         /// <returns></returns>
         public static bool IsTestVersion()
         {
-            return false;
+            // return false;
 
             return true;
         }
