@@ -119,7 +119,10 @@ namespace WPFApp.Views
             }
 
             var dataClient = DataClient.Instance;
-            dataClient.POST("Palet", palet);
+            var response = dataClient.POST("Palet", palet);
+            
+            MessageBox.Show("Palet has been just created", String.Empty,
+                MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
