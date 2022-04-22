@@ -13,7 +13,7 @@ namespace Tests_WebAppServer
         [Test]
         public void InsertRecordsFromMoqToDb()
         {
-            //*
+            /*
             new MoqInsert_Users().Insert();
             new MoqInsert_ActualTask().Insert();
             new MoqInsert_CareSchedule().Insert();
@@ -22,7 +22,7 @@ namespace Tests_WebAppServer
             new MoqInsert_PaletPlantsType().Insert();
             new MoqInsert_TypeOfCare().Insert();
             new MoqInsert_UserCategory().Insert();
-            //*/
+            /*/
         }
 
         [Test]
